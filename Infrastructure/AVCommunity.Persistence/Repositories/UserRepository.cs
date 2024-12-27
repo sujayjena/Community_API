@@ -113,7 +113,9 @@ namespace AVCommunity.Persistence.Repositories
         {
             DynamicParameters queryParameters = new DynamicParameters();
             queryParameters.Add("@Id", parameters.Id);
-            queryParameters.Add("@UserName", parameters.UserName);
+            queryParameters.Add("@FirstName", parameters.FirstName);
+            queryParameters.Add("@MiddleName", parameters.MiddleName);
+            queryParameters.Add("@LastName", parameters.LastName);
             queryParameters.Add("@Surname", parameters.Surname);
             queryParameters.Add("@MobileNumber", parameters.MobileNumber);
             queryParameters.Add("@EmailId", parameters.EmailId);
@@ -122,14 +124,21 @@ namespace AVCommunity.Persistence.Repositories
             queryParameters.Add("@GenderId", parameters.GenderId);
             queryParameters.Add("@MeritalStatusId", parameters.MeritalStatusId);
             queryParameters.Add("@CurrentAddress", parameters.CurrentAddress);
-            queryParameters.Add("@BusinessAddress", parameters.BusinessAddress);
             queryParameters.Add("@StateId", parameters.StateId);
             queryParameters.Add("@DistrictId", parameters.DistrictId);
             queryParameters.Add("@VillageId", parameters.VillageId);
             queryParameters.Add("@Pincode", parameters.Pincode);
+            queryParameters.Add("@BusinessAddress", parameters.BusinessAddress);
+            queryParameters.Add("@BusinessStateId", parameters.BusinessStateId);
+            queryParameters.Add("@BusinessDistrictId", parameters.BusinessDistrictId);
+            queryParameters.Add("@BusinessVillageId", parameters.BusinessVillageId);
+            queryParameters.Add("@BusinessPincode", parameters.BusinessPincode);
             queryParameters.Add("@DateOfBirth", parameters.DateOfBirth);
             queryParameters.Add("@HigherStudyId", parameters.HigherStudyId);
             queryParameters.Add("@OccupationId", parameters.OccupationId);
+            queryParameters.Add("@QuestionId", parameters.QuestionId);
+            queryParameters.Add("@QuestionAnswer", parameters.QuestionAnswer);
+            queryParameters.Add("@StatusId", parameters.StatusId);
             queryParameters.Add("@UserType", "User");
             queryParameters.Add("@MobileUniqueId", parameters.MobileUniqueId);
             queryParameters.Add("@IsActive", parameters.IsActive);

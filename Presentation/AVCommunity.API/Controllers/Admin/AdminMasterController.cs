@@ -78,7 +78,6 @@ namespace AVCommunity.API.Controllers.Admin
 
         #endregion
 
-        /*
         #region Gender
 
         [Route("[action]")]
@@ -194,6 +193,120 @@ namespace AVCommunity.API.Controllers.Admin
 
         #endregion
 
-        */
+        #region Occupation
+
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResponseModel> SaveOccupation(Occupation_Request parameters)
+        {
+            int result = await _adminMasterRepository.SaveOccupation(parameters);
+
+            if (result == (int)SaveOperationEnums.NoRecordExists)
+            {
+                _response.Message = "No record exists";
+            }
+            else if (result == (int)SaveOperationEnums.ReocrdExists)
+            {
+                _response.Message = "Record is already exists";
+            }
+            else if (result == (int)SaveOperationEnums.NoResult)
+            {
+                _response.Message = "Something went wrong, please try again";
+            }
+            else
+            {
+                _response.Message = "Record details saved sucessfully";
+            }
+
+            _response.Id = result;
+            return _response;
+        }
+
+
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResponseModel> GetOccupationList(Occupation_Search parameters)
+        {
+            IEnumerable<Occupation_Response> lstRoles = await _adminMasterRepository.GetOccupationList(parameters);
+            _response.Data = lstRoles.ToList();
+            _response.Total = parameters.Total;
+            return _response;
+        }
+
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResponseModel> GetOccupationById(long Id)
+        {
+            if (Id <= 0)
+            {
+                _response.Message = "Id is required";
+            }
+            else
+            {
+                var vResultObj = await _adminMasterRepository.GetOccupationById(Id);
+                _response.Data = vResultObj;
+            }
+            return _response;
+        }
+
+        #endregion
+
+        #region HigherStudy
+
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResponseModel> SaveHigherStudy(HigherStudy_Request parameters)
+        {
+            int result = await _adminMasterRepository.SaveHigherStudy(parameters);
+
+            if (result == (int)SaveOperationEnums.NoRecordExists)
+            {
+                _response.Message = "No record exists";
+            }
+            else if (result == (int)SaveOperationEnums.ReocrdExists)
+            {
+                _response.Message = "Record is already exists";
+            }
+            else if (result == (int)SaveOperationEnums.NoResult)
+            {
+                _response.Message = "Something went wrong, please try again";
+            }
+            else
+            {
+                _response.Message = "Record details saved sucessfully";
+            }
+
+            _response.Id = result;
+            return _response;
+        }
+
+
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResponseModel> GetHigherStudyList(HigherStudy_Search parameters)
+        {
+            IEnumerable<HigherStudy_Response> lstRoles = await _adminMasterRepository.GetHigherStudyList(parameters);
+            _response.Data = lstRoles.ToList();
+            _response.Total = parameters.Total;
+            return _response;
+        }
+
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResponseModel> GetHigherStudyById(long Id)
+        {
+            if (Id <= 0)
+            {
+                _response.Message = "Id is required";
+            }
+            else
+            {
+                var vResultObj = await _adminMasterRepository.GetHigherStudyById(Id);
+                _response.Data = vResultObj;
+            }
+            return _response;
+        }
+
+        #endregion
     }
 }

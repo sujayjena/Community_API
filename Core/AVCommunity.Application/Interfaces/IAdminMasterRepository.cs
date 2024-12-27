@@ -37,5 +37,21 @@ namespace AVCommunity.Application.Interfaces
         Task<BloodGroup_Response?> GetBloodGroupById(long Id);
 
         #endregion 
+
+        #region Occupation
+
+        Task<int> SaveOccupation(Occupation_Request parameters);
+        Task<IEnumerable<Occupation_Response>> GetOccupationList(BaseSearchEntity parameters);
+        Task<Occupation_Response?> GetOccupationById(long Id);
+
+        #endregion 
+
+        #region HigherStudy
+
+        Task<int> SaveHigherStudy(HigherStudy_Request parameters);
+        Task<IEnumerable<HigherStudy_Response>> GetHigherStudyList(BaseSearchEntity parameters);
+        Task<HigherStudy_Response?> GetHigherStudyById(long Id);
+
+        #endregion 
     }
 }

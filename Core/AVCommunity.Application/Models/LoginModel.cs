@@ -66,12 +66,10 @@ namespace AVCommunity.Application.Models
     {
         public long? UserId { get; set; }
         public string UserCode { get; set; }
-        public string UserName { get; set; }
+        public string? UserName { get; set; }
         public string MobileNumber { get; set; }
         public string EmailId { get; set; }
         public string UserType { get; set; }
-        public int? RoleId { get; set; }
-        public string RoleName { get; set; }
         public bool IsWebUser { get; set; }
         public bool IsMobileUser { get; set; }
         public bool IsActive { get; set; }
@@ -79,7 +77,7 @@ namespace AVCommunity.Application.Models
 
     public class SessionDataCustomer
     {
-        public string UserName { get; set; }
+        public string? UserName { get; set; }
         public string MobileNumber { get; set; }
         public string EmailId { get; set; }
         public string UserType { get; set; }
@@ -90,7 +88,7 @@ namespace AVCommunity.Application.Models
     {
         public long? UserId { get; set; }
         public string UserCode { get; set; }
-        public string UserName { get; set; }
+        public string? UserName { get; set; }
         public string MobileNumber { get; set; }
         public string EmailId { get; set; }
         public string UserType { get; set; }

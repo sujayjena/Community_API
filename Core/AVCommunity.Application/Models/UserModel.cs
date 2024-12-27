@@ -116,7 +116,9 @@ namespace AVCommunity.Application.Models
     #region User
     public class User_Request : BaseEntity
     {
-        public string? UserName { get; set; }
+        public string? FirstName { get; set; }
+        public string? MiddleName { get; set; }
+        public string? LastName { get; set; }
 
         public string? Surname { get; set; }
 
@@ -137,11 +139,6 @@ namespace AVCommunity.Application.Models
         public int? HigherStudyId { get; set; }
 
         public string? CurrentAddress { get; set; }
-
-        public int? OccupationId { get; set; }
-
-        public string? BusinessAddress { get; set; }
-
         public int? StateId { get; set; }
 
         public int? DistrictId { get; set; }
@@ -149,6 +146,21 @@ namespace AVCommunity.Application.Models
         public int? VillageId { get; set; }
 
         public int? Pincode { get; set; }
+
+        public int? OccupationId { get; set; }
+
+        public string? BusinessAddress { get; set; }
+
+        public int? BusinessStateId { get; set; }
+
+        public int? BusinessDistrictId { get; set; }
+
+        public int? BusinessVillageId { get; set; }
+
+        public int? BusinessPincode { get; set; }
+        public int? QuestionId { get; set; }
+        public string? QuestionAnswer { get; set; }
+        public int? StatusId { get; set; }
 
         public string? MobileUniqueId { get; set; }
 
@@ -161,7 +173,9 @@ namespace AVCommunity.Application.Models
 
     public class User_Response : BaseResponseEntity
     {
-        public string? UserName { get; set; }
+        public string? FirstName { get; set; }
+        public string? MiddleName { get; set; }
+        public string? LastName { get; set; }
 
         public string? Surname { get; set; }
 
@@ -186,12 +200,6 @@ namespace AVCommunity.Application.Models
         public string? HigherStudyName { get; set; }
 
         public string? CurrentAddress { get; set; }
-
-        public int? OccupationId { get; set; }
-        public string? OccupationName { get; set; }
-
-        public string? BusinessAddress { get; set; }
-
         public int? StateId { get; set; }
         public string? StateName { get; set; }
 
@@ -202,6 +210,28 @@ namespace AVCommunity.Application.Models
         public string? VillageName { get; set; }
 
         public int? Pincode { get; set; }
+
+        public int? OccupationId { get; set; }
+        public string? OccupationName { get; set; }
+
+        public string? BusinessAddress { get; set; }
+
+        public int? BusinessStateId { get; set; }
+        public string? BusinessStateName { get; set; }
+
+        public int? BusinessDistrictId { get; set; }
+        public string? BusinessDistrictName { get; set; }
+
+        public int? BusinessVillageId { get; set; }
+        public string? BusinessVillageName { get; set; }
+
+        public int? BusinessPincode { get; set; }
+
+        public int? QuestionId { get; set; }
+        public string? QuestionName { get; set; }
+        public string? QuestionAnswer { get; set; }
+        public int? StatusId { get; set; }
+        public string? StatusName { get; set; }
 
         public string? UserType { get; set; }
 

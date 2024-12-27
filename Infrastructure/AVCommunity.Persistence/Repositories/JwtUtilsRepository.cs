@@ -40,7 +40,7 @@ namespace AVCommunity.Persistence.Repositories
             if (parameters.UserId != null)
             {
                 claims.Add(new Claim("UserCode", parameters.UserCode));
-                claims.Add(new Claim("UserName", parameters.UserName));
+                claims.Add(new Claim("FirstName", parameters.UserName));
                 //claims.Add(new Claim("RoleName", parameters.RoleName));
             }
             //else if (parameters.CustomerId != null)

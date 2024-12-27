@@ -72,4 +72,44 @@ namespace AVCommunity.Application.Models
     }
 
     #endregion
+
+    #region Occupation
+
+    public class Occupation_Search : BaseSearchEntity
+    {
+    }
+
+    public class Occupation_Request : BaseEntity
+    {
+        public string? OccupationName { get; set; }
+        public bool? IsActive { get; set; }
+    }
+
+    public class Occupation_Response : BaseResponseEntity
+    {
+        public string? OccupationName { get; set; }
+        public bool? IsActive { get; set; }
+    }
+
+    #endregion
+
+    #region HigherStudy
+
+    public class HigherStudy_Search : BaseSearchEntity
+    {
+    }
+
+    public class HigherStudy_Request : BaseEntity
+    {
+        public string? HigherStudyName { get; set; }
+        public bool? IsActive { get; set; }
+    }
+
+    public class HigherStudy_Response : BaseResponseEntity
+    {
+        public string? HigherStudyName { get; set; }
+        public bool? IsActive { get; set; }
+    }
+
+    #endregion
 }
