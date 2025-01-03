@@ -112,4 +112,44 @@ namespace AVCommunity.Application.Models
     }
 
     #endregion
+
+    #region Relation
+
+    public class Relation_Search : BaseSearchEntity
+    {
+    }
+
+    public class Relation_Request : BaseEntity
+    {
+        public string? RelationName { get; set; }
+        public bool? IsActive { get; set; }
+    }
+
+    public class Relation_Response : BaseResponseEntity
+    {
+        public string? RelationName { get; set; }
+        public bool? IsActive { get; set; }
+    }
+
+    #endregion
+
+    #region Position
+
+    public class Position_Search : BaseSearchEntity
+    {
+    }
+
+    public class Position_Request : BaseEntity
+    {
+        public string? PositionName { get; set; }
+        public bool? IsActive { get; set; }
+    }
+
+    public class Position_Response : BaseResponseEntity
+    {
+        public string? PositionName { get; set; }
+        public bool? IsActive { get; set; }
+    }
+
+    #endregion
 }

@@ -1,4 +1,5 @@
-﻿using AVCommunity.Application.Enums;
+﻿using AVCommunity.API.CustomAttributes;
+using AVCommunity.Application.Enums;
 using AVCommunity.Application.Interfaces;
 using AVCommunity.Application.Models;
 using AVCommunity.Persistence.Repositories;
@@ -225,6 +226,7 @@ namespace AVCommunity.API.Controllers.Admin
 
         [Route("[action]")]
         [HttpPost]
+        [AllowAnonymous]
         public async Task<ResponseModel> GetOccupationList(Occupation_Search parameters)
         {
             IEnumerable<Occupation_Response> lstRoles = await _adminMasterRepository.GetOccupationList(parameters);
@@ -283,6 +285,7 @@ namespace AVCommunity.API.Controllers.Admin
 
         [Route("[action]")]
         [HttpPost]
+        [AllowAnonymous]
         public async Task<ResponseModel> GetHigherStudyList(HigherStudy_Search parameters)
         {
             IEnumerable<HigherStudy_Response> lstRoles = await _adminMasterRepository.GetHigherStudyList(parameters);
@@ -302,6 +305,122 @@ namespace AVCommunity.API.Controllers.Admin
             else
             {
                 var vResultObj = await _adminMasterRepository.GetHigherStudyById(Id);
+                _response.Data = vResultObj;
+            }
+            return _response;
+        }
+
+        #endregion
+
+        #region Relation
+
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResponseModel> SaveRelation(Relation_Request parameters)
+        {
+            int result = await _adminMasterRepository.SaveRelation(parameters);
+
+            if (result == (int)SaveOperationEnums.NoRecordExists)
+            {
+                _response.Message = "No record exists";
+            }
+            else if (result == (int)SaveOperationEnums.ReocrdExists)
+            {
+                _response.Message = "Record is already exists";
+            }
+            else if (result == (int)SaveOperationEnums.NoResult)
+            {
+                _response.Message = "Something went wrong, please try again";
+            }
+            else
+            {
+                _response.Message = "Record details saved sucessfully";
+            }
+
+            _response.Id = result;
+            return _response;
+        }
+
+
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResponseModel> GetRelationList(Relation_Search parameters)
+        {
+            IEnumerable<Relation_Response> lstRoles = await _adminMasterRepository.GetRelationList(parameters);
+            _response.Data = lstRoles.ToList();
+            _response.Total = parameters.Total;
+            return _response;
+        }
+
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResponseModel> GetRelationById(long Id)
+        {
+            if (Id <= 0)
+            {
+                _response.Message = "Id is required";
+            }
+            else
+            {
+                var vResultObj = await _adminMasterRepository.GetRelationById(Id);
+                _response.Data = vResultObj;
+            }
+            return _response;
+        }
+
+        #endregion
+
+        #region Position
+
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResponseModel> SavePosition(Position_Request parameters)
+        {
+            int result = await _adminMasterRepository.SavePosition(parameters);
+
+            if (result == (int)SaveOperationEnums.NoRecordExists)
+            {
+                _response.Message = "No record exists";
+            }
+            else if (result == (int)SaveOperationEnums.ReocrdExists)
+            {
+                _response.Message = "Record is already exists";
+            }
+            else if (result == (int)SaveOperationEnums.NoResult)
+            {
+                _response.Message = "Something went wrong, please try again";
+            }
+            else
+            {
+                _response.Message = "Record details saved sucessfully";
+            }
+
+            _response.Id = result;
+            return _response;
+        }
+
+
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResponseModel> GetPositionList(Position_Search parameters)
+        {
+            IEnumerable<Position_Response> lstRoles = await _adminMasterRepository.GetPositionList(parameters);
+            _response.Data = lstRoles.ToList();
+            _response.Total = parameters.Total;
+            return _response;
+        }
+
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResponseModel> GetPositionById(long Id)
+        {
+            if (Id <= 0)
+            {
+                _response.Message = "Id is required";
+            }
+            else
+            {
+                var vResultObj = await _adminMasterRepository.GetPositionById(Id);
                 _response.Data = vResultObj;
             }
             return _response;

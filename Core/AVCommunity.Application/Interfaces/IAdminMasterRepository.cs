@@ -52,6 +52,22 @@ namespace AVCommunity.Application.Interfaces
         Task<IEnumerable<HigherStudy_Response>> GetHigherStudyList(BaseSearchEntity parameters);
         Task<HigherStudy_Response?> GetHigherStudyById(long Id);
 
+        #endregion
+
+        #region Relation
+
+        Task<int> SaveRelation(Relation_Request parameters);
+        Task<IEnumerable<Relation_Response>> GetRelationList(BaseSearchEntity parameters);
+        Task<Relation_Response?> GetRelationById(long Id);
+
+        #endregion
+
+        #region Position
+
+        Task<int> SavePosition(Position_Request parameters);
+        Task<IEnumerable<Position_Response>> GetPositionList(BaseSearchEntity parameters);
+        Task<Position_Response?> GetPositionById(long Id);
+
         #endregion 
     }
 }

@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using OfficeOpenXml.Style;
 using OfficeOpenXml;
 using System.Text;
+using AVCommunity.API.CustomAttributes;
 
 namespace AVCommunity.API.Controllers.Admin
 {
@@ -83,6 +84,8 @@ namespace AVCommunity.API.Controllers.Admin
 
                 #endregion
             }
+
+            _response.Id = result;
             return _response;
         }
 
@@ -136,6 +139,7 @@ namespace AVCommunity.API.Controllers.Admin
 
         [Route("[action]")]
         [HttpPost]
+        [AllowAnonymous]
         public async Task<ResponseModel> SaveUser(User_Request parameters)
         {
             int result = await _userRepository.SaveUser(parameters);
@@ -156,6 +160,8 @@ namespace AVCommunity.API.Controllers.Admin
             {
                 _response.Message = "Record details saved sucessfully";
             }
+
+            _response.Id = result;
             return _response;
         }
 
