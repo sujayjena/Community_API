@@ -43,14 +43,17 @@ namespace AVCommunity.API.Controllers.Admin
             if (result == (int)SaveOperationEnums.NoRecordExists)
             {
                 _response.Message = "No record exists";
+                _response.IsSuccess = false;
             }
             else if (result == (int)SaveOperationEnums.ReocrdExists)
             {
                 _response.Message = "Record is already exists";
+                _response.IsSuccess = false;
             }
             else if (result == (int)SaveOperationEnums.NoResult)
             {
                 _response.Message = "Something went wrong, please try again";
+                _response.IsSuccess = false;
             }
             else
             {
@@ -147,14 +150,17 @@ namespace AVCommunity.API.Controllers.Admin
             if (result == (int)SaveOperationEnums.NoRecordExists)
             {
                 _response.Message = "No record exists";
+                _response.IsSuccess = false;
             }
             else if (result == (int)SaveOperationEnums.ReocrdExists)
             {
                 _response.Message = "Record is already exists";
+                _response.IsSuccess = false;
             }
             else if (result == (int)SaveOperationEnums.NoResult)
             {
                 _response.Message = "Something went wrong, please try again";
+                _response.IsSuccess = false;
             }
             else
             {
@@ -167,7 +173,7 @@ namespace AVCommunity.API.Controllers.Admin
 
         [Route("[action]")]
         [HttpPost]
-        public async Task<ResponseModel> GetUserList(BaseSearchEntity parameters)
+        public async Task<ResponseModel> GetUserList(User_Search parameters)
         {
             IEnumerable<User_Response> lstUsers = await _userRepository.GetUserList(parameters);
             _response.Data = lstUsers.ToList();

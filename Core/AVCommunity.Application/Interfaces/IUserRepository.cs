@@ -28,7 +28,7 @@ namespace AVCommunity.Application.Interfaces
 
         Task<int> SaveUser(User_Request parameters);
 
-        Task<IEnumerable<User_Response>> GetUserList(BaseSearchEntity parameters);
+        Task<IEnumerable<User_Response>> GetUserList(User_Search parameters);
 
         Task<User_Response?> GetUserById(long Id);
 

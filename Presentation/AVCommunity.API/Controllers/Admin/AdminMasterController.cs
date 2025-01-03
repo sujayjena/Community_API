@@ -344,6 +344,7 @@ namespace AVCommunity.API.Controllers.Admin
 
         [Route("[action]")]
         [HttpPost]
+        [AllowAnonymous]
         public async Task<ResponseModel> GetRelationList(Relation_Search parameters)
         {
             IEnumerable<Relation_Response> lstRoles = await _adminMasterRepository.GetRelationList(parameters);

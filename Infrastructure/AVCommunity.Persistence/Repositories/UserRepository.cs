@@ -141,15 +141,17 @@ namespace AVCommunity.Persistence.Repositories
             queryParameters.Add("@StatusId", parameters.StatusId);
             queryParameters.Add("@UserType", "User");
             queryParameters.Add("@MobileUniqueId", parameters.MobileUniqueId);
+            queryParameters.Add("@RegisterUserId", parameters.RegisterUserId);
             queryParameters.Add("@IsActive", parameters.IsActive);
             queryParameters.Add("@UserId", SessionManager.LoggedInUserId);
 
             return await SaveByStoredProcedure<int>("SaveUser", queryParameters);
         }
 
-        public async Task<IEnumerable<User_Response>> GetUserList(BaseSearchEntity parameters)
+        public async Task<IEnumerable<User_Response>> GetUserList(User_Search parameters)
         {
             DynamicParameters queryParameters = new DynamicParameters();
+            queryParameters.Add("@RegisterUserId", parameters.RegisterUserId);
             queryParameters.Add("@SearchText", parameters.SearchText.SanitizeValue());
             queryParameters.Add("@IsActive", parameters.IsActive);
             queryParameters.Add("@PageNo", parameters.PageNo);

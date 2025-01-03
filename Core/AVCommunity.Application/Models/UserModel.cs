@@ -164,11 +164,19 @@ namespace AVCommunity.Application.Models
 
         public string? MobileUniqueId { get; set; }
 
+        [DefaultValue(0)]
+        public int? RegisterUserId { get; set; }
+
         [JsonIgnore]
         [DefaultValue("User")]
         public string? UserType { get; set; }
 
         public bool? IsActive { get; set; }
+    }
+
+    public class User_Search : BaseSearchEntity
+    {
+        public int? RegisterUserId { get; set; }
     }
 
     public class User_Response : BaseResponseEntity
@@ -221,22 +229,18 @@ namespace AVCommunity.Application.Models
 
         public int? BusinessDistrictId { get; set; }
         public string? BusinessDistrictName { get; set; }
-
         public int? BusinessVillageId { get; set; }
         public string? BusinessVillageName { get; set; }
-
         public int? BusinessPincode { get; set; }
-
         public int? QuestionId { get; set; }
         public string? QuestionName { get; set; }
         public string? QuestionAnswer { get; set; }
         public int? StatusId { get; set; }
         public string? StatusName { get; set; }
-
         public string? UserType { get; set; }
-
         public string? MobileUniqueId { get; set; }
-
+        public int? RegisterUserId { get; set; }
+        public string? RegisterUser { get; set; }
         public bool? IsActive { get; set; }
     }
 
