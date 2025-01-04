@@ -27,6 +27,7 @@ namespace AVCommunity.Persistence
             services.AddScoped<IEmployeePermissionRepository, EmployeePermissionRepository>();
             services.AddScoped<INotificationRepository, NotificationRepository>();
             services.AddScoped<IAdminMasterRepository, AdminMasterRepository>();
+            services.AddScoped<IManageRewardsRepository, ManageRewardsRepository>();
         }
     }
 }
