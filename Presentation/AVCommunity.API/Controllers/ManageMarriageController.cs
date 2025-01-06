@@ -2,7 +2,6 @@
 using AVCommunity.Application.Helpers;
 using AVCommunity.Application.Interfaces;
 using AVCommunity.Application.Models;
-using AVCommunity.Persistence.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,16 +9,16 @@ namespace AVCommunity.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ManageRewardsController : CustomBaseController
+    public class ManageMarriageController : ControllerBase
     {
         private ResponseModel _response;
-        private readonly IManageRewardsRepository _manageRewardsRepository;
+        private readonly IManageMarriageRepository _manageMarriageRepository;
         private IFileManager _fileManager;
 
-        public ManageRewardsController(IFileManager fileManager, IManageRewardsRepository manageRewardsRepository)
+        public ManageMarriageController(IFileManager fileManager, IManageMarriageRepository manageMarriageRepository)
         {
             _fileManager = fileManager;
-            _manageRewardsRepository = manageRewardsRepository;
+            _manageMarriageRepository = manageMarriageRepository;
 
             _response = new ResponseModel();
             _response.IsSuccess = true;
@@ -27,11 +26,11 @@ namespace AVCommunity.API.Controllers
 
         [Route("[action]")]
         [HttpPost]
-        public async Task<ResponseModel> SaveRewards(Rewards_Request parameters)
+        public async Task<ResponseModel> SaveMarriage(Marriage_Request parameters)
         {
             if (parameters! != null && !string.IsNullOrWhiteSpace(parameters.Attachment_Base64))
             {
-                var vUploadFile = _fileManager.UploadDocumentsBase64ToFile(parameters.Attachment_Base64, "\\Uploads\\Rewards\\", parameters.AttachmentOriginalFileName);
+                var vUploadFile = _fileManager.UploadDocumentsBase64ToFile(parameters.Attachment_Base64, "\\Uploads\\Marriage\\", parameters.AttachmentOriginalFileName);
 
                 if (!string.IsNullOrWhiteSpace(vUploadFile))
                 {
@@ -39,7 +38,7 @@ namespace AVCommunity.API.Controllers
                 }
             }
 
-            int result = await _manageRewardsRepository.SaveRewards(parameters);
+            int result = await _manageMarriageRepository.SaveMarriage(parameters);
 
             if (result == (int)SaveOperationEnums.NoRecordExists)
             {
@@ -67,9 +66,9 @@ namespace AVCommunity.API.Controllers
 
         [Route("[action]")]
         [HttpPost]
-        public async Task<ResponseModel> GetRewardsList(Rewards_Search parameters)
+        public async Task<ResponseModel> GetMarriageList(Marriage_Search parameters)
         {
-            IEnumerable<Rewards_Response> lstUsers = await _manageRewardsRepository.GetRewardsList(parameters);
+            IEnumerable<Marriage_Response> lstUsers = await _manageMarriageRepository.GetMarriageList(parameters);
             _response.Data = lstUsers.ToList();
             _response.Total = parameters.Total;
             return _response;
@@ -77,7 +76,7 @@ namespace AVCommunity.API.Controllers
 
         [Route("[action]")]
         [HttpPost]
-        public async Task<ResponseModel> GetRewardsById(long Id)
+        public async Task<ResponseModel> GetMarriageById(long Id)
         {
             if (Id <= 0)
             {
@@ -85,7 +84,7 @@ namespace AVCommunity.API.Controllers
             }
             else
             {
-                var vResultObj = await _manageRewardsRepository.GetRewardsById(Id);
+                var vResultObj = await _manageMarriageRepository.GetMarriageById(Id);
                 _response.Data = vResultObj;
             }
             return _response;
@@ -93,7 +92,7 @@ namespace AVCommunity.API.Controllers
 
         [Route("[action]")]
         [HttpPost]
-        public async Task<ResponseModel> RewardsApproveNReject(Rewards_ApproveNReject parameters)
+        public async Task<ResponseModel> MarriageApproveNReject(Marriage_ApproveNReject parameters)
         {
             if (parameters.Id <= 0)
             {
@@ -101,7 +100,7 @@ namespace AVCommunity.API.Controllers
             }
             else
             {
-                int resultExpenseDetails = await _manageRewardsRepository.RewardsApproveNReject(parameters);
+                int resultExpenseDetails = await _manageMarriageRepository.MarriageApproveNReject(parameters);
 
                 if (resultExpenseDetails == (int)SaveOperationEnums.NoRecordExists)
                 {
@@ -125,4 +124,3 @@ namespace AVCommunity.API.Controllers
         }
     }
 }
-

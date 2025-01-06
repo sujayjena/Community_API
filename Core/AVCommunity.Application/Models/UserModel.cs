@@ -136,6 +136,8 @@ namespace AVCommunity.Application.Models
 
         public DateTime? DateOfBirth { get; set; }
 
+        public int? Age { get; set; }
+
         public int? HigherStudyId { get; set; }
 
         public string? CurrentAddress { get; set; }
@@ -194,7 +196,7 @@ namespace AVCommunity.Application.Models
         public string? Password { get; set; }
 
         public int? RelationId { get; set; }
-        public int? RelationName { get; set; }
+        public string? RelationName { get; set; }
 
         public int? GenderId { get; set; }
         public string? GenderName { get; set; }
@@ -203,6 +205,7 @@ namespace AVCommunity.Application.Models
         public string? MeritalStatusName { get; set; }
 
         public DateTime? DateOfBirth { get; set; }
+        public int? Age { get; set; }
 
         public int? HigherStudyId { get; set; }
         public string? HigherStudyName { get; set; }

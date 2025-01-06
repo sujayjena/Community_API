@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace AVCommunity.Application.Models
 {
-    public class Rewards_Search : BaseSearchEntity
+    public class Marriage_Search : BaseSearchEntity
     {
         [DefaultValue(null)]
         public DateTime? FromDate { get; set; }
@@ -21,10 +21,10 @@ namespace AVCommunity.Application.Models
         public int? RegisterUserId { get; set; }
     }
 
-    public class Rewards_Request : BaseEntity
+    public class Marriage_Request : BaseEntity
     {
         public int? EmployeeId { get; set; }
-        public string? RewardDesc { get; set; }
+        public string? MarriageDesc { get; set; }
 
         [DefaultValue("")]
         public string? AttachmentOriginalFileName { get; set; }
@@ -38,7 +38,7 @@ namespace AVCommunity.Application.Models
         public bool? IsActive { get; set; }
     }
 
-    public class Rewards_Response : BaseResponseEntity
+    public class Marriage_Response : BaseResponseEntity
     {
         public int? RegisterUserId { get; set; }
         public string? RegisterUser { get; set; }
@@ -49,7 +49,7 @@ namespace AVCommunity.Application.Models
         public string? GenderName { get; set; }
         public DateTime? DateOfBirth { get; set; }
         public string? MobileNumber { get; set; }
-        public string? RewardDesc { get; set; }
+        public string? MarriageDesc { get; set; }
         public string? AttachmentOriginalFileName { get; set; }
         public string? AttachmentFileName { get; set; }
         public string? AttachmentURL { get; set; }
@@ -58,7 +58,7 @@ namespace AVCommunity.Application.Models
         public bool? IsActive { get; set; }
     }
 
-    public class Rewards_ApproveNReject
+    public class Marriage_ApproveNReject
     {
         public int? Id { get; set; }
         public int? StatusId { get; set; }

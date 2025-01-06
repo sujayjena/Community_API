@@ -134,6 +134,7 @@ namespace AVCommunity.Persistence.Repositories
             queryParameters.Add("@BusinessVillageId", parameters.BusinessVillageId);
             queryParameters.Add("@BusinessPincode", parameters.BusinessPincode);
             queryParameters.Add("@DateOfBirth", parameters.DateOfBirth);
+            queryParameters.Add("@Age", parameters.Age);
             queryParameters.Add("@HigherStudyId", parameters.HigherStudyId);
             queryParameters.Add("@OccupationId", parameters.OccupationId);
             queryParameters.Add("@QuestionId", parameters.QuestionId);

@@ -14,5 +14,7 @@ namespace AVCommunity.Application.Interfaces
         Task<IEnumerable<Rewards_Response>> GetRewardsList(Rewards_Search parameters);
 
         Task<Rewards_Response?> GetRewardsById(long Id);
+
+        Task<int> RewardsApproveNReject(Rewards_ApproveNReject parameters);
     }
 }

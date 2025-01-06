@@ -11,31 +11,31 @@ using System.Threading.Tasks;
 
 namespace AVCommunity.Persistence.Repositories
 {
-    public class ManageRewardsRepository : GenericRepository, IManageRewardsRepository
+    public class ManageMarriageRepository : GenericRepository, IManageMarriageRepository
     {
         private IConfiguration _configuration;
 
-        public ManageRewardsRepository(IConfiguration configuration) : base(configuration)
+        public ManageMarriageRepository(IConfiguration configuration) : base(configuration)
         {
             _configuration = configuration;
         }
 
-        public async Task<int> SaveRewards(Rewards_Request parameters)
+        public async Task<int> SaveMarriage(Marriage_Request parameters)
         {
             DynamicParameters queryParameters = new DynamicParameters();
             queryParameters.Add("@Id", parameters.Id);
             queryParameters.Add("@EmployeeId", parameters.EmployeeId);
-            queryParameters.Add("@RewardDesc", parameters.RewardDesc);
+            queryParameters.Add("@MarriageDesc", parameters.MarriageDesc);
             queryParameters.Add("@AttachmentOriginalFileName", parameters.AttachmentOriginalFileName);
             queryParameters.Add("@AttachmentFileName", parameters.AttachmentFileName);
             queryParameters.Add("@StatusId", parameters.StatusId);
             queryParameters.Add("@IsActive", parameters.IsActive);
             queryParameters.Add("@UserId", SessionManager.LoggedInUserId);
 
-            return await SaveByStoredProcedure<int>("SaveRewards", queryParameters);
+            return await SaveByStoredProcedure<int>("SaveMarriage", queryParameters);
         }
 
-        public async Task<IEnumerable<Rewards_Response>> GetRewardsList(Rewards_Search parameters)
+        public async Task<IEnumerable<Marriage_Response>> GetMarriageList(Marriage_Search parameters)
         {
             DynamicParameters queryParameters = new DynamicParameters();
             queryParameters.Add("@FromDate", parameters.FromDate);
@@ -49,21 +49,21 @@ namespace AVCommunity.Persistence.Repositories
             queryParameters.Add("@Total", parameters.Total, null, System.Data.ParameterDirection.Output);
             queryParameters.Add("@UserId", SessionManager.LoggedInUserId);
 
-            var result = await ListByStoredProcedure<Rewards_Response>("GetRewardsList", queryParameters);
+            var result = await ListByStoredProcedure<Marriage_Response>("GetMarriageList", queryParameters);
 
             parameters.Total = queryParameters.Get<int>("Total");
 
             return result;
         }
 
-        public async Task<Rewards_Response?> GetRewardsById(long Id)
+        public async Task<Marriage_Response?> GetMarriageById(long Id)
         {
             DynamicParameters queryParameters = new DynamicParameters();
             queryParameters.Add("@Id", Id);
-            return (await ListByStoredProcedure<Rewards_Response>("GetRewardsById", queryParameters)).FirstOrDefault();
+            return (await ListByStoredProcedure<Marriage_Response>("GetMarriageById", queryParameters)).FirstOrDefault();
         }
 
-        public async Task<int> RewardsApproveNReject(Rewards_ApproveNReject parameters)
+        public async Task<int> MarriageApproveNReject(Marriage_ApproveNReject parameters)
         {
             DynamicParameters queryParameters = new DynamicParameters();
 
@@ -72,7 +72,7 @@ namespace AVCommunity.Persistence.Repositories
             queryParameters.Add("@Remarks", parameters.Remarks);
             queryParameters.Add("@UserId", SessionManager.LoggedInUserId);
 
-            return await SaveByStoredProcedure<int>("RewardsApproveNReject", queryParameters);
+            return await SaveByStoredProcedure<int>("MarriageApproveNReject", queryParameters);
         }
     }
 }

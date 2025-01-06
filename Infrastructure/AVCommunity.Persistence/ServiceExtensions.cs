@@ -28,6 +28,7 @@ namespace AVCommunity.Persistence
             services.AddScoped<INotificationRepository, NotificationRepository>();
             services.AddScoped<IAdminMasterRepository, AdminMasterRepository>();
             services.AddScoped<IManageRewardsRepository, ManageRewardsRepository>();
+            services.AddScoped<IManageMarriageRepository, ManageMarriageRepository>();
         }
     }
 }
