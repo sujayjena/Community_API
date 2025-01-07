@@ -25,6 +25,7 @@ namespace AVCommunity.Application.Models
     {
         public int? EmployeeId { get; set; }
         public string? DeathDesc { get; set; }
+        public DateTime? DateOfDeath { get; set; }
 
         [DefaultValue("")]
         public string? AttachmentOriginalFileName { get; set; }
@@ -50,6 +51,7 @@ namespace AVCommunity.Application.Models
         public DateTime? DateOfBirth { get; set; }
         public string? MobileNumber { get; set; }
         public string? DeathDesc { get; set; }
+        public DateTime? DateOfDeath { get; set; }
         public string? AttachmentOriginalFileName { get; set; }
         public string? AttachmentFileName { get; set; }
         public string? AttachmentURL { get; set; }

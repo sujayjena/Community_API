@@ -26,6 +26,7 @@ namespace AVCommunity.Persistence.Repositories
             queryParameters.Add("@Id", parameters.Id);
             queryParameters.Add("@EmployeeId", parameters.EmployeeId);
             queryParameters.Add("@DeathDesc", parameters.DeathDesc);
+            queryParameters.Add("@DateOfDeath", parameters.DateOfDeath);
             queryParameters.Add("@AttachmentOriginalFileName", parameters.AttachmentOriginalFileName);
             queryParameters.Add("@AttachmentFileName", parameters.AttachmentFileName);
             queryParameters.Add("@StatusId", parameters.StatusId);
