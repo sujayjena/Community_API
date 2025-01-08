@@ -253,5 +253,24 @@ namespace AVCommunity.Application.Models
         public string? Text { get; set; }
     }
 
+    public class Champion_Search : BaseSearchEntity
+    {
+        public int? FromAge { get; set; }
+        public int? ToAge { get; set; }
+    }
+
+    public class Champion_Response : BaseResponseEntity
+    {
+        public string? FirstName { get; set; }
+        public string? MiddleName { get; set; }
+        public string? LastName { get; set; }
+        public int? GenderId { get; set; }
+        public string? GenderName { get; set; }
+        public int? Age { get; set; }
+        public string? MobileNumber { get; set; }
+        public int? DistrictId { get; set; }
+        public string? DistrictName { get; set; }
+    }
+
     #endregion
 }

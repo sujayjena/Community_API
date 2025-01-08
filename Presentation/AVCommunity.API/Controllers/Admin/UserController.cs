@@ -312,6 +312,17 @@ namespace AVCommunity.API.Controllers.Admin
             return _response;
         }
         */
+
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResponseModel> GetChampionList(Champion_Search parameters)
+        {
+            IEnumerable<Champion_Response> lstUsers = await _userRepository.GetChampionList(parameters);
+            _response.Data = lstUsers.ToList();
+            _response.Total = parameters.Total;
+            return _response;
+        }
+
         #endregion
     }
 }

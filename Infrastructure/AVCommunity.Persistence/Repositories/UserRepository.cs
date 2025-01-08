@@ -186,6 +186,25 @@ namespace AVCommunity.Persistence.Repositories
             return (await ListByStoredProcedure<User_Response>("GetUserById", queryParameters)).FirstOrDefault();
         }
 
+        public async Task<IEnumerable<Champion_Response>> GetChampionList(Champion_Search parameters)
+        {
+            DynamicParameters queryParameters = new DynamicParameters();
+            queryParameters.Add("@FromAge", parameters.FromAge);
+            queryParameters.Add("@ToAge", parameters.ToAge);
+            queryParameters.Add("@SearchText", parameters.SearchText.SanitizeValue());
+            queryParameters.Add("@IsActive", parameters.IsActive);
+            queryParameters.Add("@PageNo", parameters.PageNo);
+            queryParameters.Add("@PageSize", parameters.PageSize);
+            queryParameters.Add("@Total", parameters.Total, null, System.Data.ParameterDirection.Output);
+            queryParameters.Add("@UserId", SessionManager.LoggedInUserId);
+
+            var result = await ListByStoredProcedure<Champion_Response>("GetChampionList", queryParameters);
+
+            parameters.Total = queryParameters.Get<int>("Total");
+
+            return result;
+        }
+
         #endregion
     }
 }

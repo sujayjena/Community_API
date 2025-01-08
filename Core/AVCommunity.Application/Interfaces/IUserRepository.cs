@@ -32,6 +32,8 @@ namespace AVCommunity.Application.Interfaces
 
         Task<User_Response?> GetUserById(long Id);
 
+        Task<IEnumerable<Champion_Response>> GetChampionList(Champion_Search parameters);
+
         #endregion
     }
 }
