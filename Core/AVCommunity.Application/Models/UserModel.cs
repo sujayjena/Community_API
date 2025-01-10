@@ -244,6 +244,7 @@ namespace AVCommunity.Application.Models
         public string? MobileUniqueId { get; set; }
         public int? RegisterUserId { get; set; }
         public string? RegisterUser { get; set; }
+        public bool? IsDeath { get; set; }
         public bool? IsActive { get; set; }
     }
 
