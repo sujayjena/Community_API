@@ -26,6 +26,8 @@ namespace AVCommunity.Persistence.Repositories
             queryParameters.Add("@Id", parameters.Id);
             queryParameters.Add("@MessageName", parameters.MessageName);
             queryParameters.Add("@SequenceNo", parameters.SequenceNo);
+            queryParameters.Add("@StartDate", parameters.StartDate);
+            queryParameters.Add("@EndDate", parameters.EndDate);
             queryParameters.Add("@IsActive", parameters.IsActive);
             queryParameters.Add("@UserId", SessionManager.LoggedInUserId);
 
@@ -35,6 +37,7 @@ namespace AVCommunity.Persistence.Repositories
         public async Task<IEnumerable<BroadCast_Response>> GetBroadCastList(BroadCast_Search parameters)
         {
             DynamicParameters queryParameters = new DynamicParameters();
+            queryParameters.Add("@BroadCastDate", parameters.BroadCastDate);
             queryParameters.Add("@SearchText", parameters.SearchText.SanitizeValue());
             queryParameters.Add("@IsActive", parameters.IsActive);
             queryParameters.Add("@PageNo", parameters.PageNo);
