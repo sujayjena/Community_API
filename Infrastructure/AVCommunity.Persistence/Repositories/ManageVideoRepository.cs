@@ -60,5 +60,48 @@ namespace AVCommunity.Persistence.Repositories
             return (await ListByStoredProcedure<VideoHeader_Response>("GetVideoHeaderById", queryParameters)).FirstOrDefault();
         }
         #endregion
+
+        #region Video
+        public async Task<int> SaveVideo(Video_Request parameters)
+        {
+            DynamicParameters queryParameters = new DynamicParameters();
+            queryParameters.Add("@Id", parameters.Id);
+            queryParameters.Add("@VideoHeaderId", parameters.VideoHeaderId);
+            queryParameters.Add("@Comments", parameters.Comments);
+            queryParameters.Add("@StartDate", parameters.StartDate);
+            queryParameters.Add("@EndDate", parameters.EndDate);
+            queryParameters.Add("@VideoOriginalFileName", parameters.VideoOriginalFileName);
+            queryParameters.Add("@VideoFileName", parameters.VideoFileName);
+            queryParameters.Add("@IsActive", parameters.IsActive);
+            queryParameters.Add("@UserId", SessionManager.LoggedInUserId);
+
+            return await SaveByStoredProcedure<int>("SaveVideo", queryParameters);
+        }
+
+        public async Task<IEnumerable<Video_Response>> GetVideoList(Video_Search parameters)
+        {
+            DynamicParameters queryParameters = new DynamicParameters();
+            queryParameters.Add("@VideoHeaderId", parameters.VideoHeaderId);
+            queryParameters.Add("@SearchText", parameters.SearchText.SanitizeValue());
+            queryParameters.Add("@IsActive", parameters.IsActive);
+            queryParameters.Add("@PageNo", parameters.PageNo);
+            queryParameters.Add("@PageSize", parameters.PageSize);
+            queryParameters.Add("@Total", parameters.Total, null, System.Data.ParameterDirection.Output);
+            queryParameters.Add("@UserId", SessionManager.LoggedInUserId);
+
+            var result = await ListByStoredProcedure<Video_Response>("GetVideoList", queryParameters);
+
+            parameters.Total = queryParameters.Get<int>("Total");
+
+            return result;
+        }
+
+        public async Task<Video_Response?> GetVideoById(long Id)
+        {
+            DynamicParameters queryParameters = new DynamicParameters();
+            queryParameters.Add("@Id", Id);
+            return (await ListByStoredProcedure<Video_Response>("GetVideoById", queryParameters)).FirstOrDefault();
+        }
+        #endregion
     }
 }

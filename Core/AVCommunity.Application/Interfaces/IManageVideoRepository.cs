@@ -18,5 +18,15 @@ namespace AVCommunity.Application.Interfaces
         Task<VideoHeader_Response?> GetVideoHeaderById(long Id);
 
         #endregion
+
+        #region Video
+
+        Task<int> SaveVideo(Video_Request parameters);
+
+        Task<IEnumerable<Video_Response>> GetVideoList(Video_Search parameters);
+
+        Task<Video_Response?> GetVideoById(long Id);
+
+        #endregion
     }
 }
