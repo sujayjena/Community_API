@@ -27,6 +27,7 @@ namespace AVCommunity.Persistence.Repositories
             queryParameters.Add("@ExecutiveBodyName", parameters.ExecutiveBodyName);
             queryParameters.Add("@PositionId", parameters.PositionId);
             queryParameters.Add("@MobileNumber", parameters.MobileNumber);
+            queryParameters.Add("@StateId", parameters.StateId);
             queryParameters.Add("@DistrictId", parameters.DistrictId);
             queryParameters.Add("@VillageId", parameters.VillageId);
             queryParameters.Add("@IsActive", parameters.IsActive);

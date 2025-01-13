@@ -24,6 +24,9 @@ namespace AVCommunity.Application.Models
         public string? MobileNumber { get; set; }
 
         [DefaultValue(0)]
+        public int? StateId { get; set; }
+
+        [DefaultValue(0)]
         public int? DistrictId { get; set; }
 
         [DefaultValue(0)]
@@ -37,6 +40,8 @@ namespace AVCommunity.Application.Models
         public int? PositionId { get; set; }
         public string? PositionName { get; set; }
         public string? MobileNumber { get; set; }
+        public int? StateId { get; set; }
+        public string? StateName { get; set; }
         public int? DistrictId { get; set; }
         public string? DistrictName { get; set; }
         public int? VillageId { get; set; }
