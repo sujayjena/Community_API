@@ -34,6 +34,7 @@ namespace AVCommunity.Persistence
             services.AddScoped<IExecutiveBodyRepository, ExecutiveBodyRepository>();
             services.AddScoped<IManageBroadCastRepository, ManageBroadCastRepository>();
             services.AddScoped<IManagePhotoRepository, ManagePhotoRepository>();
+            services.AddScoped<IManageVideoRepository, ManageVideoRepository>();
         }
     }
 }
