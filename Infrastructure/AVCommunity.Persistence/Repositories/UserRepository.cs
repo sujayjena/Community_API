@@ -205,6 +205,36 @@ namespace AVCommunity.Persistence.Repositories
             return result;
         }
 
+        public async Task<int> SaveSplit(Split_Request parameters)
+        {
+            DynamicParameters queryParameters = new DynamicParameters();
+            queryParameters.Add("@EmployeeId", parameters.EmployeeId);
+            queryParameters.Add("@UserId", SessionManager.LoggedInUserId);
+
+            return await SaveByStoredProcedure<int>("SaveSplit", queryParameters);
+        }
+
+        public async Task<IEnumerable<User_Response>> GetGlobalUserList(GlobalUser_Search parameters)
+        {
+            DynamicParameters queryParameters = new DynamicParameters();
+            queryParameters.Add("@EmployeeId", parameters.EmployeeId);
+            queryParameters.Add("@BusinessId", parameters.BusinessId);
+            queryParameters.Add("@DistrictId", parameters.DistrictId);
+            queryParameters.Add("@VillageId", parameters.VillageId);
+            queryParameters.Add("@SearchText", parameters.SearchText.SanitizeValue());
+            queryParameters.Add("@IsActive", parameters.IsActive);
+            queryParameters.Add("@PageNo", parameters.PageNo);
+            queryParameters.Add("@PageSize", parameters.PageSize);
+            queryParameters.Add("@Total", parameters.Total, null, System.Data.ParameterDirection.Output);
+            queryParameters.Add("@UserId", SessionManager.LoggedInUserId);
+
+            var result = await ListByStoredProcedure<User_Response>("GetGlobalUserList", queryParameters);
+
+            parameters.Total = queryParameters.Get<int>("Total");
+
+            return result;
+        }
+
         #endregion
     }
 }

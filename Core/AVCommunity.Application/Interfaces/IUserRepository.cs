@@ -34,6 +34,10 @@ namespace AVCommunity.Application.Interfaces
 
         Task<IEnumerable<Champion_Response>> GetChampionList(Champion_Search parameters);
 
+        Task<int> SaveSplit(Split_Request parameters);
+
+        Task<IEnumerable<User_Response>> GetGlobalUserList(GlobalUser_Search parameters);
+
         #endregion
     }
 }

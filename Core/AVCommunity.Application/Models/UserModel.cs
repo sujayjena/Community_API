@@ -181,6 +181,14 @@ namespace AVCommunity.Application.Models
         public int? RegisterUserId { get; set; }
     }
 
+    public class GlobalUser_Search : BaseSearchEntity
+    {
+        public int? EmployeeId { get; set; }
+        public int? BusinessId { get; set; }
+        public int? DistrictId { get; set; }
+        public int? VillageId { get; set; }
+    }
+
     public class User_Response : BaseResponseEntity
     {
         public string? FirstName { get; set; }
@@ -273,5 +281,10 @@ namespace AVCommunity.Application.Models
         public string? DistrictName { get; set; }
     }
 
+    public class Split_Request
+    {
+        [DefaultValue("")]
+        public string? EmployeeId { get; set; }
+    }
     #endregion
 }
