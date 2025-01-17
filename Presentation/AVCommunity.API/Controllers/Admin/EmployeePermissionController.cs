@@ -16,7 +16,7 @@ namespace AVCommunity.API.Controllers.Admin
         private readonly IEmployeePermissionRepository _rolePermissionRepository;
 
         public EmployeePermissionController(IEmployeePermissionRepository rolePermissionRepository)
-        {
+        { 
             _rolePermissionRepository = rolePermissionRepository;
             _response = new ResponseModel();
             _response.IsSuccess = true;

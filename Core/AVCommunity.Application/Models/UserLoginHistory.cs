@@ -11,3 +11,4 @@
         public bool? IsLoggedIn { get; set; }
     }
 }
+ 

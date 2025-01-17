@@ -23,7 +23,7 @@ namespace AVCommunity.API.Controllers
 
             _response = new ResponseModel();
             _response.IsSuccess = true;
-        }
+        } 
 
         [Route("[action]")]
         [HttpPost]

@@ -27,7 +27,7 @@ namespace AVCommunity.Persistence.Repositories
             queryParameters.Add("@MessageName", parameters.MessageName);
             queryParameters.Add("@SequenceNo", parameters.SequenceNo);
             queryParameters.Add("@StartDate", parameters.StartDate);
-            queryParameters.Add("@EndDate", parameters.EndDate);
+            queryParameters.Add("@EndDate", parameters.EndDate); 
             queryParameters.Add("@IsActive", parameters.IsActive);
             queryParameters.Add("@UserId", SessionManager.LoggedInUserId);
 

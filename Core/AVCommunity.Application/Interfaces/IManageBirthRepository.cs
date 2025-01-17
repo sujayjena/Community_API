@@ -18,3 +18,4 @@ namespace AVCommunity.Application.Interfaces
         Task<int> BirthApproveNReject(Birth_ApproveNReject parameters);
     }
 }
+ 

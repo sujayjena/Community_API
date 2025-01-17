@@ -17,3 +17,4 @@ namespace AVCommunity.Persistence.Repositories
         public bool? IsActive { get; set; }
     }
 }
+ 

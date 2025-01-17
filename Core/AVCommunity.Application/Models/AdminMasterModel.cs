@@ -91,7 +91,7 @@ namespace AVCommunity.Application.Models
         public bool? IsActive { get; set; }
     }
 
-    #endregion
+    #endregion 
 
     #region HigherStudy
 

@@ -18,7 +18,7 @@ namespace AVCommunity.Persistence.Repositories
         public AdminMasterRepository(IConfiguration configuration) : base(configuration)
         {
             _configuration = configuration;
-        }
+        } 
 
         #region MeritalStatus
 

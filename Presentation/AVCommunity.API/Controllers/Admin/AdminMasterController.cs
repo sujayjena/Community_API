@@ -15,7 +15,7 @@ namespace AVCommunity.API.Controllers.Admin
         private ResponseModel _response;
         private readonly IAdminMasterRepository _adminMasterRepository;
 
-        public AdminMasterController(IAdminMasterRepository AdminMasterRepository)
+        public AdminMasterController(IAdminMasterRepository AdminMasterRepository) 
         {
             _adminMasterRepository = AdminMasterRepository;
             _response = new ResponseModel();

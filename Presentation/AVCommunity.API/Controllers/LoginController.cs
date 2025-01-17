@@ -31,7 +31,7 @@ namespace AVCommunity.API.Controllers
             _response.IsSuccess = true;
         }
 
-        [HttpPost]
+        [HttpPost] 
         [Route("[action]")]
         public async Task<ResponseModel> MobileAppLogin(MobileAppLoginRequestModel parameters)
         {

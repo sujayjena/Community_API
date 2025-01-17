@@ -15,7 +15,7 @@ namespace AVCommunity.API.CustomAttributes
             bool allowAnonymous = context.ActionDescriptor.EndpointMetadata.OfType<AllowAnonymousAttribute>().Any();
 
             if (allowAnonymous)
-                return;
+                return; 
 
             // authorization
             sessionData = (UsersLoginSessionData?)context.HttpContext.Items["SessionData"]!;

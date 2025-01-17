@@ -13,3 +13,4 @@ namespace AVCommunity.Domain.Entities
         public DateTime ModifiedDate { get; set; }
     }
 }
+ 

@@ -9,10 +9,7 @@ namespace AVCommunity.Application.Interfaces
 {
     public interface IExecutiveBodyRepository
     {
-        Task<int> SaveExecutiveBody(ExecutiveBody_Request parameters);
-
-        Task<IEnumerable<ExecutiveBody_Response>> GetExecutiveBodyList(ExecutiveBody_Search parameters);
-
-        Task<ExecutiveBody_Response?> GetExecutiveBodyById(long Id);
+      
     }
 }
+ 
