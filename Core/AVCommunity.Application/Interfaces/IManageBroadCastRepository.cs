@@ -16,4 +16,3 @@ namespace AVCommunity.Application.Interfaces
         Task<BroadCast_Response?> GetBroadCastById(long Id);
     }
 }
- 

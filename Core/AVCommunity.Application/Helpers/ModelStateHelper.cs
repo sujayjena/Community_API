@@ -24,7 +24,7 @@ namespace AVCommunity.Application.Helpers
 
             return response;
         }
-         
+
         public static ResponseModel GetValidationErrorsList(object model)
         {
             ResponseModel response = new ResponseModel();

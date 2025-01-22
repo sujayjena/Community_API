@@ -35,7 +35,7 @@ namespace AVCommunity.API.Controllers
                 if (!string.IsNullOrWhiteSpace(vUploadFile))
                 {
                     parameters.AttachmentFileName = vUploadFile;
-                } 
+                }
             }
 
             int result = await _manageDeathRepository.SaveDeath(parameters);

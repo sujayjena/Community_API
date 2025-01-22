@@ -27,7 +27,7 @@ namespace AVCommunity.Persistence.Repositories
             queryParameters.Add("@Id", parameters.Id);
             queryParameters.Add("@Subject", parameters.Subject);
             queryParameters.Add("@SendTo", parameters.SendTo);
-            queryParameters.Add("@CustomerId", parameters.CustomerId); 
+            queryParameters.Add("@CustomerId", parameters.CustomerId);
             queryParameters.Add("@CustomerMessage", parameters.CustomerMessage);
             queryParameters.Add("@EmployeeId", parameters.EmployeeId);
             queryParameters.Add("@EmployeeMessage", parameters.EmployeeMessage);

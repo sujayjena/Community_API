@@ -20,6 +20,6 @@ namespace AVCommunity.API.CustomAttributes
                 schema.Type = "string";
                 schema.Format = "binary";
             }
-        } 
+        }
     }
 }

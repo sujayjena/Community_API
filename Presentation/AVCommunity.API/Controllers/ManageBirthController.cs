@@ -33,7 +33,7 @@ namespace AVCommunity.API.Controllers
                 var vUploadFile = _fileManager.UploadDocumentsBase64ToFile(parameters.Attachment_Base64, "\\Uploads\\Birth\\", parameters.AttachmentOriginalFileName);
 
                 if (!string.IsNullOrWhiteSpace(vUploadFile))
-                { 
+                {
                     parameters.AttachmentFileName = vUploadFile;
                 }
             }

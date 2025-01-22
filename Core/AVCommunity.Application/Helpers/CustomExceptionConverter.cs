@@ -17,7 +17,7 @@ namespace AVCommunity.Application.Helpers
             writer.WriteString("Type", value.GetType().Name);
 
             if (value.InnerException is { } innerException)
-            { 
+            {
                 writer.WritePropertyName("InnerException");
                 Write(writer, innerException, options);
             }

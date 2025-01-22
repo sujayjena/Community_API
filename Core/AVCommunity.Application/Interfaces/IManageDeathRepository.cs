@@ -18,4 +18,3 @@ namespace AVCommunity.Application.Interfaces
         Task<int> DeathApproveNReject(Death_ApproveNReject parameters);
     }
 }
- 
