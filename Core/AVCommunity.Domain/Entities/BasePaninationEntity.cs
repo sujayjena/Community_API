@@ -16,3 +16,4 @@ namespace AVCommunity.Domain.Entities
         public int Total { get; set; }
     }
 }
+ 

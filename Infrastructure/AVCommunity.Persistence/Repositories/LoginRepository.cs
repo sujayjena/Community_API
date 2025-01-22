@@ -25,7 +25,7 @@ namespace AVCommunity.Persistence.Repositories
             IEnumerable<UsersLoginSessionData> lstResponse;
             DynamicParameters queryParameters = new DynamicParameters();
             queryParameters.Add("@Username", parameters.MobileNumber.SanitizeValue());
-            queryParameters.Add("@Password", parameters.Password.SanitizeValue());
+            queryParameters.Add("@Password", parameters.Password.SanitizeValue()); 
             queryParameters.Add("@MobileUniqueId", parameters.MobileUniqueId.SanitizeValue());
 
             lstResponse = await ListByStoredProcedure<UsersLoginSessionData>("ValidateUserLoginByUsername", queryParameters);

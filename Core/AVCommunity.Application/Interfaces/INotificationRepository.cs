@@ -16,3 +16,4 @@ namespace AVCommunity.Application.Interfaces
         Task<Notification_Response?> GetNotificationById(int Id);
     }
 }
+ 

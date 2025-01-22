@@ -18,3 +18,4 @@ namespace AVCommunity.Application.Interfaces
         Task<int> MarriageApproveNReject(Marriage_ApproveNReject parameters);
     }
 }
+ 

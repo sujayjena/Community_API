@@ -18,3 +18,4 @@ namespace AVCommunity.Application.Interfaces
         Task<int> RewardsApproveNReject(Rewards_ApproveNReject parameters);
     }
 }
+ 

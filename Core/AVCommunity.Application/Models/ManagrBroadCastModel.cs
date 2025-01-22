@@ -29,7 +29,7 @@ namespace AVCommunity.Application.Models
         public string? MessageName { get; set; }
         public int? SequenceNo { get; set; }
         public DateTime? StartDate { get; set; }
-        public DateTime? EndDate { get; set; }
+        public DateTime? EndDate { get; set; } 
         public bool? IsActive { get; set; }
     }
 }

@@ -15,3 +15,4 @@ namespace AVCommunity.Application.Models
         public object Data { get; set; }
     }
 }
+ 

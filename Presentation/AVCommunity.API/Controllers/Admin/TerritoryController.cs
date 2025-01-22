@@ -13,7 +13,7 @@ namespace AVCommunity.API.Controllers.Admin
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TerritoryController : CustomBaseController
+    public class TerritoryController : CustomBaseController 
     {
         private ResponseModel _response;
         private readonly ITerritoryRepository _territoryRepository;

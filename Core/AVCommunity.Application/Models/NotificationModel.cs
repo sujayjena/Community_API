@@ -31,7 +31,7 @@ namespace AVCommunity.Application.Models
         public DateTime? CreatedDate { get; set; }
         public bool? ReadUnread { get; set; }
     }
-
+     
     public class Notification_Response
     {
         public int Id { get; set; }

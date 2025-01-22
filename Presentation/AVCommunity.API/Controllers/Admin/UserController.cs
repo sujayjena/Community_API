@@ -15,7 +15,7 @@ namespace AVCommunity.API.Controllers.Admin
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserController : CustomBaseController
+    public class UserController : CustomBaseController 
     {
         private ResponseModel _response;
         private readonly IUserRepository _userRepository;

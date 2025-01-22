@@ -22,7 +22,7 @@ namespace AVCommunity.API.CustomAttributes
             //operation.Parameters.Add(new OpenApiParameter
             //{
             //    Name = "Authorization",
-            //    In = ParameterLocation.Header,
+            //    In = ParameterLocation.Header, 
             //    Description = "Session Token",
             //    Required = isTokenRequired
             //});

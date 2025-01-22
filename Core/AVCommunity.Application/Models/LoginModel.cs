@@ -21,7 +21,7 @@ namespace AVCommunity.Application.Models
         [DefaultValue("W")]
         public string IsWebOrMobileUser { get; set; }
 
-        public bool Remember { get; set; }
+        public bool Remember { get; set; } 
     }
 
     public class MobileAppLoginRequestModel
