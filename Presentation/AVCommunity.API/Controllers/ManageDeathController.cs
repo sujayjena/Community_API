@@ -2,6 +2,7 @@
 using AVCommunity.Application.Helpers;
 using AVCommunity.Application.Interfaces;
 using AVCommunity.Application.Models;
+using AVCommunity.Persistence.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -120,6 +121,22 @@ namespace AVCommunity.API.Controllers
                 }
             }
 
+            return _response;
+        }
+
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResponseModel> GetDeathRemarkLogListById(DeathRemarkLog_Search parameters)
+        {
+            if (parameters.DeathId <= 0)
+            {
+                _response.Message = "Death Id is required";
+            }
+            else
+            {
+                var vResultObj = await _manageDeathRepository.GetDeathRemarkLogListById(parameters);
+                _response.Data = vResultObj;
+            }
             return _response;
         }
     }

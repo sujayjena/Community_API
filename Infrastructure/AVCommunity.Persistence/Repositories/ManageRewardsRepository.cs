@@ -74,5 +74,15 @@ namespace AVCommunity.Persistence.Repositories
 
             return await SaveByStoredProcedure<int>("RewardsApproveNReject", queryParameters);
         }
+
+        public async Task<IEnumerable<RewardRemarkLog_Response>> GetRewardRemarkLogListById(RewardRemarkLog_Search parameters)
+        {
+            DynamicParameters queryParameters = new DynamicParameters();
+            queryParameters.Add("@RewardId", parameters.RewardId);
+
+            var result = await ListByStoredProcedure<RewardRemarkLog_Response>("GetRewardRemarkLogListById", queryParameters);
+
+            return result;
+        }
     }
 }

@@ -16,5 +16,7 @@ namespace AVCommunity.Application.Interfaces
         Task<Marriage_Response?> GetMarriageById(long Id);
 
         Task<int> MarriageApproveNReject(Marriage_ApproveNReject parameters);
+
+        Task<IEnumerable<MarriageRemarkLog_Response>> GetMarriageRemarkLogListById(MarriageRemarkLog_Search parameters);
     }
 }

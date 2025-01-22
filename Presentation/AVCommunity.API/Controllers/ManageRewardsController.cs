@@ -123,6 +123,22 @@ namespace AVCommunity.API.Controllers
 
             return _response;
         }
+
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResponseModel> GetRewardRemarkLogListById(RewardRemarkLog_Search parameters)
+        {
+            if (parameters.RewardId <= 0)
+            {
+                _response.Message = "Reward Id is required";
+            }
+            else
+            {
+                var vResultObj = await _manageRewardsRepository.GetRewardRemarkLogListById(parameters);
+                _response.Data = vResultObj;
+            }
+            return _response;
+        }
     }
 }
 

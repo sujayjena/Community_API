@@ -16,5 +16,7 @@ namespace AVCommunity.Application.Interfaces
         Task<Death_Response?> GetDeathById(long Id);
 
         Task<int> DeathApproveNReject(Death_ApproveNReject parameters);
+
+        Task<IEnumerable<DeathRemarkLog_Response>> GetDeathRemarkLogListById(DeathRemarkLog_Search parameters);
     }
 }

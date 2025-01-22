@@ -66,4 +66,21 @@ namespace AVCommunity.Application.Models
         [DefaultValue("")]
         public string? Remarks { get; set; }
     }
+
+    public class MarriageRemarkLog_Search
+    {
+        [DefaultValue(0)]
+        public int? MarriageId { get; set; }
+    }
+
+    public class MarriageRemarkLog_Response : BaseEntity
+    {
+        public int? MarriageId { get; set; }
+        public string? Remarks { get; set; }
+        public int? StatusId { get; set; }
+        public string? StatusName { get; set; }
+        public DateTime? CreatedDate { get; set; }
+        public int? CreatedBy { get; set; }
+        public string? CreatorName { get; set; }
+    }
 }

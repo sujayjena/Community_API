@@ -68,4 +68,21 @@ namespace AVCommunity.Application.Models
         [DefaultValue("")]
         public string? Remarks { get; set; }
     }
+
+    public class DeathRemarkLog_Search
+    {
+        [DefaultValue(0)]
+        public int? DeathId { get; set; }
+    }
+
+    public class DeathRemarkLog_Response : BaseEntity
+    {
+        public int? DeathId { get; set; }
+        public string? Remarks { get; set; }
+        public int? StatusId { get; set; }
+        public string? StatusName { get; set; }
+        public DateTime? CreatedDate { get; set; }
+        public int? CreatedBy { get; set; }
+        public string? CreatorName { get; set; }
+    }
 }

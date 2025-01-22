@@ -16,5 +16,7 @@ namespace AVCommunity.Application.Interfaces
         Task<Rewards_Response?> GetRewardsById(long Id);
 
         Task<int> RewardsApproveNReject(Rewards_ApproveNReject parameters);
+
+        Task<IEnumerable<RewardRemarkLog_Response>> GetRewardRemarkLogListById(RewardRemarkLog_Search parameters);
     }
 }

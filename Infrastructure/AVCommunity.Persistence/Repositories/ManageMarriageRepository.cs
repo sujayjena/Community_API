@@ -74,5 +74,15 @@ namespace AVCommunity.Persistence.Repositories
 
             return await SaveByStoredProcedure<int>("MarriageApproveNReject", queryParameters);
         }
+
+        public async Task<IEnumerable<MarriageRemarkLog_Response>> GetMarriageRemarkLogListById(MarriageRemarkLog_Search parameters)
+        {
+            DynamicParameters queryParameters = new DynamicParameters();
+            queryParameters.Add("@MarriageId", parameters.MarriageId);
+
+            var result = await ListByStoredProcedure<MarriageRemarkLog_Response>("GetMarriageRemarkLogListById", queryParameters);
+
+            return result;
+        }
     }
 }

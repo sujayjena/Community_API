@@ -2,6 +2,7 @@
 using AVCommunity.Application.Helpers;
 using AVCommunity.Application.Interfaces;
 using AVCommunity.Application.Models;
+using AVCommunity.Persistence.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -120,6 +121,22 @@ namespace AVCommunity.API.Controllers
                 }
             }
 
+            return _response;
+        }
+
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResponseModel> GetMarriageRemarkLogListById(MarriageRemarkLog_Search parameters)
+        {
+            if (parameters.MarriageId <= 0)
+            {
+                _response.Message = "Marriage Id is required";
+            }
+            else
+            {
+                var vResultObj = await _manageMarriageRepository.GetMarriageRemarkLogListById(parameters);
+                _response.Data = vResultObj;
+            }
             return _response;
         }
     }

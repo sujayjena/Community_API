@@ -75,5 +75,15 @@ namespace AVCommunity.Persistence.Repositories
 
             return await SaveByStoredProcedure<int>("DeathApproveNReject", queryParameters);
         }
+
+        public async Task<IEnumerable<DeathRemarkLog_Response>> GetDeathRemarkLogListById(DeathRemarkLog_Search parameters)
+        {
+            DynamicParameters queryParameters = new DynamicParameters();
+            queryParameters.Add("@DeathId", parameters.DeathId);
+
+            var result = await ListByStoredProcedure<DeathRemarkLog_Response>("GetDeathRemarkLogListById", queryParameters);
+
+            return result;
+        }
     }
 }
