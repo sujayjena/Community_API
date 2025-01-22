@@ -68,6 +68,16 @@ namespace AVCommunity.Application.Interfaces
         Task<IEnumerable<Position_Response>> GetPositionList(BaseSearchEntity parameters);
         Task<Position_Response?> GetPositionById(long Id);
 
-        #endregion 
+        #endregion
+
+        #region Industry
+
+        Task<int> SaveIndustry(Industry_Request parameters);
+
+        Task<IEnumerable<Industry_Response>> GetIndustryList(Industry_Search parameters);
+
+        Task<Industry_Response?> GetIndustryById(int Id);
+
+        #endregion
     }
 }

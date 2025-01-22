@@ -152,4 +152,26 @@ namespace AVCommunity.Application.Models
     }
 
     #endregion
+
+    #region Industry
+
+    public class Industry_Search : BaseSearchEntity
+    {
+    }
+
+    public class Industry_Request : BaseEntity
+    {
+        public string? IndustryName { get; set; }
+
+        public bool? IsActive { get; set; }
+    }
+
+    public class Industry_Response : BaseResponseEntity
+    {
+        public string? IndustryName { get; set; }
+
+        public bool? IsActive { get; set; }
+    }
+
+    #endregion
 }
