@@ -16,4 +16,3 @@ namespace AVCommunity.Application.Interfaces
         Task<UsersLoginSessionData?> GetProfileDetailsByToken(string token);
     }
 }
- 

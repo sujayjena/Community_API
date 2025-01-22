@@ -26,7 +26,7 @@ namespace AVCommunity.Application.Models
         [DefaultValue(0)]
         public int? StateId { get; set; }
 
-        [DefaultValue(0)] 
+        [DefaultValue(0)]
         public int? DistrictId { get; set; }
 
         [DefaultValue(0)]

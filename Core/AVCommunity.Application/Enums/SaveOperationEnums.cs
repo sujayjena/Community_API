@@ -8,7 +8,8 @@ namespace AVCommunity.Application.Enums
 {
     public enum SaveOperationEnums
     {
-     
+        NoRecordExists = -1,
+        ReocrdExists = -2,
+        NoResult = 0
     }
 }
-  

@@ -24,7 +24,7 @@ namespace AVCommunity.Application.Helpers
         private readonly IHostingEnvironment _environment;
         public FileManager(IHostingEnvironment environment)
         {
-            _environment = environment; 
+            _environment = environment;
         }
 
         private string SaveFileToPath(string folderPath, IFormFile postedFile)

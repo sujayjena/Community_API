@@ -30,7 +30,7 @@ namespace AVCommunity.Persistence.Repositories
             queryParameters.Add("@AttachmentFileName", parameters.AttachmentFileName);
             queryParameters.Add("@StatusId", parameters.StatusId);
             queryParameters.Add("@IsActive", parameters.IsActive);
-            queryParameters.Add("@UserId", SessionManager.LoggedInUserId); 
+            queryParameters.Add("@UserId", SessionManager.LoggedInUserId);
 
             return await SaveByStoredProcedure<int>("SaveMarriage", queryParameters);
         }

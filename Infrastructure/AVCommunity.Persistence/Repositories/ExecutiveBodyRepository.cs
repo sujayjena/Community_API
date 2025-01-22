@@ -23,7 +23,7 @@ namespace AVCommunity.Persistence.Repositories
         public async Task<int> SaveExecutiveBody(ExecutiveBody_Request parameters)
         {
             DynamicParameters queryParameters = new DynamicParameters();
-            queryParameters.Add("@Id", parameters.Id); 
+            queryParameters.Add("@Id", parameters.Id);
             queryParameters.Add("@ExecutiveBodyName", parameters.ExecutiveBodyName);
             queryParameters.Add("@PositionId", parameters.PositionId);
             queryParameters.Add("@MobileNumber", parameters.MobileNumber);

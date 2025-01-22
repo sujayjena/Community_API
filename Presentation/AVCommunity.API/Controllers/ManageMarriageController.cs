@@ -37,7 +37,7 @@ namespace AVCommunity.API.Controllers
                     parameters.AttachmentFileName = vUploadFile;
                 }
             }
-             
+
             int result = await _manageMarriageRepository.SaveMarriage(parameters);
 
             if (result == (int)SaveOperationEnums.NoRecordExists)

@@ -23,7 +23,7 @@ namespace AVCommunity.API.Controllers
         //}
 
         //[HttpGet("CheckAPI")]
-        //public async Task<IActionResult> CheckAPIGet() 
+        //public async Task<IActionResult> CheckAPIGet()
         //{
         //    return Ok(await _ICommonRepository.CheckList());
         //}

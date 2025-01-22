@@ -9,5 +9,7 @@ namespace AVCommunity.Application.Interfaces
 {
     public interface IJwtUtilsRepository
     {
+        public (string, DateTime) GenerateJwtToken(UsersLoginSessionData parameters);
+        Task<UsersLoginSessionData?> ValidateJwtToken(string token);
     }
 }

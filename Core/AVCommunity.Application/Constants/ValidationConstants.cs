@@ -20,7 +20,7 @@
         public const string MobileNumberRegExp = @"^[0-9]+$";
         public const string MobileNumberRegExp_Msg = "Mobile Number value is invalid";
         public const int MobileNumber_MaxLength = 10;
-        public const string MobileNumber_MaxLength_Msg = "More than 10 characters ar e not allowed for Mobile Number";
+        public const string MobileNumber_MaxLength_Msg = "More than 10 characters are not allowed for Mobile Number";
 
         public const string PhoneNumberRequied_Msg = @"Phone Number is required";
         public const string PhoneNumberRegExp = @"^[0-9]+$";

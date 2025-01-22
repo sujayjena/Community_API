@@ -27,7 +27,7 @@ namespace AVCommunity.Persistence.Repositories
             queryParameters.Add("@EmployeeId", parameters.EmployeeId);
             queryParameters.Add("@BirthDesc", parameters.BirthDesc);
             queryParameters.Add("@AttachmentOriginalFileName", parameters.AttachmentOriginalFileName);
-            queryParameters.Add("@AttachmentFileName", parameters.AttachmentFileName); 
+            queryParameters.Add("@AttachmentFileName", parameters.AttachmentFileName);
             queryParameters.Add("@StatusId", parameters.StatusId);
             queryParameters.Add("@IsActive", parameters.IsActive);
             queryParameters.Add("@UserId", SessionManager.LoggedInUserId);
