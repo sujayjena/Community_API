@@ -23,6 +23,7 @@ namespace AVCommunity.Application.Models
 
     public class Rewards_Request : BaseEntity
     {
+        public int? RegisterUserId { get; set; }
         public int? EmployeeId { get; set; }
         public string? RewardDesc { get; set; }
 

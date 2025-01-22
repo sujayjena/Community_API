@@ -24,6 +24,7 @@ namespace AVCommunity.Persistence.Repositories
         {
             DynamicParameters queryParameters = new DynamicParameters();
             queryParameters.Add("@Id", parameters.Id);
+            queryParameters.Add("@RegisterUserId", parameters.RegisterUserId);
             queryParameters.Add("@EmployeeId", parameters.EmployeeId);
             queryParameters.Add("@RewardDesc", parameters.RewardDesc);
             queryParameters.Add("@AttachmentOriginalFileName", parameters.AttachmentOriginalFileName);

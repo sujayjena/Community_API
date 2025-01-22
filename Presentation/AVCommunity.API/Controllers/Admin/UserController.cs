@@ -237,12 +237,13 @@ namespace AVCommunity.API.Controllers.Admin
                     WorkSheet1.Cells[1, 13].Value = "District";
                     WorkSheet1.Cells[1, 14].Value = "Village";
                     WorkSheet1.Cells[1, 15].Value = "Pincode";
-                    WorkSheet1.Cells[1, 16].Value = "Business Address";
-                    WorkSheet1.Cells[1, 17].Value = "State";
-                    WorkSheet1.Cells[1, 18].Value = "District";
-                    WorkSheet1.Cells[1, 19].Value = "Village";
-                    WorkSheet1.Cells[1, 20].Value = "Pincode";
-                    WorkSheet1.Cells[1, 21].Value = "IsActive";
+                    WorkSheet1.Cells[1, 16].Value = "Industry";
+                    WorkSheet1.Cells[1, 17].Value = "Business Address";
+                    //WorkSheet1.Cells[1, 17].Value = "State";
+                    //WorkSheet1.Cells[1, 18].Value = "District";
+                    //WorkSheet1.Cells[1, 19].Value = "Village";
+                    //WorkSheet1.Cells[1, 20].Value = "Pincode";
+                    WorkSheet1.Cells[1, 18].Value = "IsActive";
 
                     recordIndex = 2;
 
@@ -263,12 +264,13 @@ namespace AVCommunity.API.Controllers.Admin
                         WorkSheet1.Cells[recordIndex, 13].Value = items.DistrictName;
                         WorkSheet1.Cells[recordIndex, 14].Value = items.VillageName;
                         WorkSheet1.Cells[recordIndex, 15].Value = items.Pincode;
-                        WorkSheet1.Cells[recordIndex, 16].Value = items.CurrentAddress;
-                        WorkSheet1.Cells[recordIndex, 17].Value = items.StateName;
-                        WorkSheet1.Cells[recordIndex, 18].Value = items.DistrictName;
-                        WorkSheet1.Cells[recordIndex, 19].Value = items.VillageName;
-                        WorkSheet1.Cells[recordIndex, 20].Value = items.Pincode;
-                        WorkSheet1.Cells[recordIndex, 21].Value = items.IsActive == true ? "Active" : "Inactive";
+                        WorkSheet1.Cells[recordIndex, 16].Value = "";
+                        WorkSheet1.Cells[recordIndex, 17].Value = items.BusinessAddress;
+                        //WorkSheet1.Cells[recordIndex, 17].Value = items.StateName;
+                        //WorkSheet1.Cells[recordIndex, 18].Value = items.DistrictName;
+                        //WorkSheet1.Cells[recordIndex, 19].Value = items.VillageName;
+                        //WorkSheet1.Cells[recordIndex, 20].Value = items.Pincode;
+                        WorkSheet1.Cells[recordIndex, 18].Value = items.IsActive == true ? "Active" : "Inactive";
 
                         recordIndex += 1;
 
@@ -294,12 +296,13 @@ namespace AVCommunity.API.Controllers.Admin
                             WorkSheet1.Cells[recordIndex, 13].Value = mitems.DistrictName;
                             WorkSheet1.Cells[recordIndex, 14].Value = mitems.VillageName;
                             WorkSheet1.Cells[recordIndex, 15].Value = mitems.Pincode;
-                            WorkSheet1.Cells[recordIndex, 16].Value = mitems.CurrentAddress;
-                            WorkSheet1.Cells[recordIndex, 17].Value = mitems.StateName;
-                            WorkSheet1.Cells[recordIndex, 18].Value = mitems.DistrictName;
-                            WorkSheet1.Cells[recordIndex, 19].Value = mitems.VillageName;
-                            WorkSheet1.Cells[recordIndex, 20].Value = mitems.Pincode;
-                            WorkSheet1.Cells[recordIndex, 21].Value = mitems.IsActive == true ? "Active" : "Inactive";
+                            WorkSheet1.Cells[recordIndex, 16].Value = "";
+                            WorkSheet1.Cells[recordIndex, 17].Value = mitems.CurrentAddress;
+                            //WorkSheet1.Cells[recordIndex, 17].Value = mitems.StateName;
+                            //WorkSheet1.Cells[recordIndex, 18].Value = mitems.DistrictName;
+                            //WorkSheet1.Cells[recordIndex, 19].Value = mitems.VillageName;
+                            //WorkSheet1.Cells[recordIndex, 20].Value = mitems.Pincode;
+                            WorkSheet1.Cells[recordIndex, 18].Value = mitems.IsActive == true ? "Active" : "Inactive";
 
                             recordIndex += 1;
                         }
@@ -323,9 +326,9 @@ namespace AVCommunity.API.Controllers.Admin
                     WorkSheet1.Column(16).AutoFit();
                     WorkSheet1.Column(17).AutoFit();
                     WorkSheet1.Column(18).AutoFit();
-                    WorkSheet1.Column(19).AutoFit();
-                    WorkSheet1.Column(20).AutoFit();
-                    WorkSheet1.Column(21).AutoFit();
+                    //WorkSheet1.Column(19).AutoFit();
+                    //WorkSheet1.Column(20).AutoFit();
+                    //WorkSheet1.Column(21).AutoFit();
 
                     excelExportData.SaveAs(msExportDataFile);
                     msExportDataFile.Position = 0;
