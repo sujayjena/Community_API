@@ -23,6 +23,7 @@ namespace AVCommunity.Application.Models
 
     public class Death_Request : BaseEntity
     {
+        public int? RegisterUserId { get; set; }
         public int? EmployeeId { get; set; }
         public string? DeathDesc { get; set; }
         public DateTime? DateOfDeath { get; set; }

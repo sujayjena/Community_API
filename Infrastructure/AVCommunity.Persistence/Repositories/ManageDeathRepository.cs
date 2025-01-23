@@ -24,6 +24,7 @@ namespace AVCommunity.Persistence.Repositories
         {
             DynamicParameters queryParameters = new DynamicParameters();
             queryParameters.Add("@Id", parameters.Id);
+            queryParameters.Add("@RegisterUserId", parameters.RegisterUserId);
             queryParameters.Add("@EmployeeId", parameters.EmployeeId);
             queryParameters.Add("@DeathDesc", parameters.DeathDesc);
             queryParameters.Add("@DateOfDeath", parameters.DateOfDeath);
