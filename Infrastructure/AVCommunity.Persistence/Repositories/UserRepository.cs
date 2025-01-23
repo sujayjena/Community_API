@@ -235,6 +235,29 @@ namespace AVCommunity.Persistence.Repositories
             return result;
         }
 
+        public async Task<int> SaveUserIndustry(UserIndustry_Request parameters)
+        {
+            DynamicParameters queryParameters = new DynamicParameters();
+            queryParameters.Add("@Action", parameters.Action);
+            queryParameters.Add("@EmployeeId", parameters.UserId);
+            queryParameters.Add("@IndustryId", parameters.IndustryId);
+            queryParameters.Add("@UserId", SessionManager.LoggedInUserId);
+
+            return await SaveByStoredProcedure<int>("SaveUserIndustry", queryParameters);
+        }
+
+        public async Task<IEnumerable<UserIndustry_Response>> GetUserIndustryByEmployeeId(int EmployeeId, int IndustryId)
+        {
+            DynamicParameters queryParameters = new DynamicParameters();
+            queryParameters.Add("@EmployeeId", EmployeeId);
+            queryParameters.Add("@IndustryId", IndustryId);
+            queryParameters.Add("@UserId", SessionManager.LoggedInUserId);
+
+            var result = await ListByStoredProcedure<UserIndustry_Response>("GetUserIndustryByEmployeeId", queryParameters);
+
+            return result;
+        }
+
         #endregion
     }
 }

@@ -116,6 +116,11 @@ namespace AVCommunity.Application.Models
     #region User
     public class User_Request : BaseEntity
     {
+        public User_Request()
+        {
+            UserIndustryList = new List<UserIndustry_Request>();
+        }
+
         public string? FirstName { get; set; }
         public string? MiddleName { get; set; }
         public string? LastName { get; set; }
@@ -174,6 +179,8 @@ namespace AVCommunity.Application.Models
         public string? UserType { get; set; }
 
         public bool? IsActive { get; set; }
+
+        public List<UserIndustry_Request>? UserIndustryList { get; set; }
     }
 
     public class User_Search : BaseSearchEntity
@@ -191,6 +198,11 @@ namespace AVCommunity.Application.Models
 
     public class User_Response : BaseResponseEntity
     {
+        public User_Response()
+        {
+            UserIndustryList = new List<UserIndustry_Response>();
+        }
+
         public string? FirstName { get; set; }
         public string? MiddleName { get; set; }
         public string? LastName { get; set; }
@@ -252,8 +264,10 @@ namespace AVCommunity.Application.Models
         public string? MobileUniqueId { get; set; }
         public int? RegisterUserId { get; set; }
         public string? RegisterUser { get; set; }
+        public string? Industry { get; set; }
         public bool? IsDeath { get; set; }
         public bool? IsActive { get; set; }
+        public List<UserIndustry_Response>? UserIndustryList { get; set; }
     }
 
     public class SelectList_Response
@@ -286,5 +300,22 @@ namespace AVCommunity.Application.Models
         [DefaultValue("")]
         public string? EmployeeId { get; set; }
     }
+
+    public class UserIndustry_Request : BaseEntity
+    {
+        [JsonIgnore]
+        public string? Action { get; set; }
+
+        [JsonIgnore]
+        public int? UserId { get; set; }
+        public int? IndustryId { get; set; }
+    }
+    public class UserIndustry_Response : BaseEntity
+    {
+        public int? UserId { get; set; }
+        public int? IndustryId { get; set; }
+        public string? IndustryName { get; set; }
+    }
+
     #endregion
 }

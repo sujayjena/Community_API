@@ -20,7 +20,7 @@ namespace AVCommunity.Application.Interfaces
 
         Task<int> SaveAdminVillage(AdminVillage_Request parameters);
 
-        Task<IEnumerable<AdminVillage_Response>> GetAdminVillageByEmployeeId(int EmployeeId, int BranchId);
+        Task<IEnumerable<AdminVillage_Response>> GetAdminVillageByEmployeeId(int EmployeeId, int VillageId);
 
         #endregion
 
@@ -37,6 +37,10 @@ namespace AVCommunity.Application.Interfaces
         Task<int> SaveSplit(Split_Request parameters);
 
         Task<IEnumerable<User_Response>> GetGlobalUserList(GlobalUser_Search parameters);
+
+        Task<int> SaveUserIndustry(UserIndustry_Request parameters);
+
+        Task<IEnumerable<UserIndustry_Response>> GetUserIndustryByEmployeeId(int EmployeeId, int IndustryId);
 
         #endregion
     }

@@ -20,13 +20,15 @@ namespace AVCommunity.API.Controllers.Admin
         private ResponseModel _response;
         private readonly IUserRepository _userRepository;
         private readonly ITerritoryRepository _territoryRepository;
+        private readonly IAdminMasterRepository _adminMasterRepository;
         private IFileManager _fileManager;
 
-        public UserController(IUserRepository userRepository, IFileManager fileManager, ITerritoryRepository territoryRepository)
+        public UserController(IUserRepository userRepository, IFileManager fileManager, ITerritoryRepository territoryRepository, IAdminMasterRepository adminMasterRepository)
         {
             _userRepository = userRepository;
             _fileManager = fileManager;
             _territoryRepository = territoryRepository;
+            _adminMasterRepository = adminMasterRepository;
 
             _response = new ResponseModel();
             _response.IsSuccess = true;
@@ -165,6 +167,34 @@ namespace AVCommunity.API.Controllers.Admin
             else
             {
                 _response.Message = "Record details saved sucessfully";
+
+                #region // Add/Update Industry
+
+                // Delete Old Industry
+
+                var vUserIndustryDELETEObj = new UserIndustry_Request()
+                {
+                    Action = "DELETE",
+                    UserId = result,
+                    IndustryId = 0
+                };
+                int resultUserIndustryDELETE = await _userRepository.SaveUserIndustry(vUserIndustryDELETEObj);
+
+
+                // Add new mapping of employee
+                foreach (var vIndustryitem in parameters.UserIndustryList)
+                {
+                    var vUserIndustryObj = new UserIndustry_Request()
+                    {
+                        Action = "INSERT",
+                        UserId = result,
+                        IndustryId = vIndustryitem.IndustryId
+                    };
+
+                    int resultUserIndustry = await _userRepository.SaveUserIndustry(vUserIndustryObj);
+                }
+
+                #endregion
             }
 
             _response.Id = result;
@@ -192,6 +222,24 @@ namespace AVCommunity.API.Controllers.Admin
             else
             {
                 var vResultObj = await _userRepository.GetUserById(Id);
+                if (vResultObj != null)
+                {
+                    var vUserIndustryObj = await _userRepository.GetUserIndustryByEmployeeId(vResultObj.Id, 0);
+
+                    foreach (var item in vUserIndustryObj)
+                    {
+                        var vIndustryObj = await _adminMasterRepository.GetIndustryById(Convert.ToInt32(item.IndustryId));
+                        var vBrMapResOnj = new UserIndustry_Response()
+                        {
+                            Id = item.Id,
+                            UserId = vResultObj.Id,
+                            IndustryId = item.IndustryId,
+                            IndustryName = vIndustryObj != null ? vIndustryObj.IndustryName : string.Empty,
+                        };
+
+                        vResultObj.UserIndustryList.Add(vBrMapResOnj);
+                    }
+                }
                 _response.Data = vResultObj;
             }
             return _response;
@@ -264,7 +312,7 @@ namespace AVCommunity.API.Controllers.Admin
                         WorkSheet1.Cells[recordIndex, 13].Value = items.DistrictName;
                         WorkSheet1.Cells[recordIndex, 14].Value = items.VillageName;
                         WorkSheet1.Cells[recordIndex, 15].Value = items.Pincode;
-                        WorkSheet1.Cells[recordIndex, 16].Value = "";
+                        WorkSheet1.Cells[recordIndex, 16].Value = items.Industry;
                         WorkSheet1.Cells[recordIndex, 17].Value = items.BusinessAddress;
                         //WorkSheet1.Cells[recordIndex, 17].Value = items.StateName;
                         //WorkSheet1.Cells[recordIndex, 18].Value = items.DistrictName;
@@ -296,7 +344,7 @@ namespace AVCommunity.API.Controllers.Admin
                             WorkSheet1.Cells[recordIndex, 13].Value = mitems.DistrictName;
                             WorkSheet1.Cells[recordIndex, 14].Value = mitems.VillageName;
                             WorkSheet1.Cells[recordIndex, 15].Value = mitems.Pincode;
-                            WorkSheet1.Cells[recordIndex, 16].Value = "";
+                            WorkSheet1.Cells[recordIndex, 16].Value = items.Industry;
                             WorkSheet1.Cells[recordIndex, 17].Value = mitems.CurrentAddress;
                             //WorkSheet1.Cells[recordIndex, 17].Value = mitems.StateName;
                             //WorkSheet1.Cells[recordIndex, 18].Value = mitems.DistrictName;
