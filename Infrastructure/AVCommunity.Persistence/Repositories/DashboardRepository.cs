@@ -47,6 +47,19 @@ namespace AVCommunity.Persistence.Repositories
             return result;
         }
 
+        public async Task<IEnumerable<GetDashboard_BirthSummary_Response>> GetDashboard_BirthSummary(GetDashboard_BirthSummary_Search parameters)
+        {
+            DynamicParameters queryParameters = new DynamicParameters();
+
+            queryParameters.Add("@FromDate", parameters.FromDate);
+            queryParameters.Add("@ToDate", parameters.ToDate);
+            queryParameters.Add("@UserId", SessionManager.LoggedInUserId);
+
+            var result = await ListByStoredProcedure<GetDashboard_BirthSummary_Response>("GetDashboard_BirthSummary", queryParameters);
+
+            return result;
+        }
+
         public async Task<IEnumerable<GetDashboard_DeathSummary_Response>> GetDashboard_DeathSummary(GetDashboard_DeathSummary_Search parameters)
         {
             DynamicParameters queryParameters = new DynamicParameters();
@@ -59,5 +72,6 @@ namespace AVCommunity.Persistence.Repositories
 
             return result;
         }
+
     }
 }

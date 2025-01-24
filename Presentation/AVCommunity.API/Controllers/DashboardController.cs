@@ -45,6 +45,15 @@ namespace AVCommunity.API.Controllers
 
         [Route("[action]")]
         [HttpPost]
+        public async Task<ResponseModel> GetDashboard_BirthSummary(GetDashboard_BirthSummary_Search parameters)
+        {
+            IEnumerable<GetDashboard_BirthSummary_Response> lst = await _dashboardRepository.GetDashboard_BirthSummary(parameters);
+            _response.Data = lst.ToList();
+            return _response;
+        }
+
+        [Route("[action]")]
+        [HttpPost]
         public async Task<ResponseModel> GetDashboard_DeathSummary(GetDashboard_DeathSummary_Search parameters)
         {
             IEnumerable<GetDashboard_DeathSummary_Response> lst = await _dashboardRepository.GetDashboard_DeathSummary(parameters);

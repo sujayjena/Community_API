@@ -11,6 +11,7 @@ namespace AVCommunity.Application.Interfaces
     {
         Task<IEnumerable<GetDashboard_Summary_Response>> GetDashboard_Summary(GetDashboard_Summary_Search parameters);
         Task<IEnumerable<GetDashboard_AgeWiseCategoryDistribution_Response>> GetDashboard_AgeWiseCategoryDistribution(GetDashboard_AgeWiseCategoryDistribution_Search parameters);
+        Task<IEnumerable<GetDashboard_BirthSummary_Response>> GetDashboard_BirthSummary(GetDashboard_BirthSummary_Search parameters);
         Task<IEnumerable<GetDashboard_DeathSummary_Response>> GetDashboard_DeathSummary(GetDashboard_DeathSummary_Search parameters);
     }
 }

@@ -51,7 +51,20 @@ namespace AVCommunity.Application.Models
         public int? TotalMaleAge_61 { get; set; }
         public int? TotalFemaleAge_61 { get; set; }
     }
+    public class GetDashboard_BirthSummary_Search
+    {
+        [DefaultValue(null)]
+        public DateTime? FromDate { get; set; }
 
+        [DefaultValue(null)]
+        public DateTime? ToDate { get; set; }
+    }
+
+    public class GetDashboard_BirthSummary_Response
+    {
+        public int? TotalMaleCount { get; set; }
+        public int? TotalFemaleCount { get; set; }
+    }
     public class GetDashboard_DeathSummary_Search
     {
         [DefaultValue(null)]
