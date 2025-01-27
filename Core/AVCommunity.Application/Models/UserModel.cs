@@ -174,6 +174,8 @@ namespace AVCommunity.Application.Models
         [DefaultValue(0)]
         public int? RegisterUserId { get; set; }
 
+        public string? IndustryName { get; set; }
+
         [JsonIgnore]
         [DefaultValue("User")]
         public string? UserType { get; set; }
@@ -264,7 +266,7 @@ namespace AVCommunity.Application.Models
         public string? MobileUniqueId { get; set; }
         public int? RegisterUserId { get; set; }
         public string? RegisterUser { get; set; }
-        public string? Industry { get; set; }
+        public string? IndustryName { get; set; }
         public bool? IsDeath { get; set; }
         public bool? IsActive { get; set; }
         public List<UserIndustry_Response>? UserIndustryList { get; set; }

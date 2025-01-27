@@ -270,55 +270,59 @@ namespace AVCommunity.API.Controllers.Admin
                     WorkSheet1.Row(1).Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
                     WorkSheet1.Row(1).Style.Font.Bold = true;
 
-                    WorkSheet1.Cells[1, 1].Value = "Full Name";
-                    WorkSheet1.Cells[1, 2].Value = "Surname Of Mosal";
-                    WorkSheet1.Cells[1, 3].Value = "Mobile Number";
-                    WorkSheet1.Cells[1, 4].Value = "Relation";
-                    WorkSheet1.Cells[1, 5].Value = "Gender";
-                    WorkSheet1.Cells[1, 6].Value = "Is Married";
-                    WorkSheet1.Cells[1, 7].Value = "Date Of Birth";
-                    WorkSheet1.Cells[1, 8].Value = "Age";
-                    WorkSheet1.Cells[1, 9].Value = "Higher Study";
-                    WorkSheet1.Cells[1, 10].Value = "Business";
-                    WorkSheet1.Cells[1, 11].Value = "Current Address";
-                    WorkSheet1.Cells[1, 12].Value = "State";
-                    WorkSheet1.Cells[1, 13].Value = "District";
-                    WorkSheet1.Cells[1, 14].Value = "Village";
-                    WorkSheet1.Cells[1, 15].Value = "Pincode";
-                    WorkSheet1.Cells[1, 16].Value = "Industry";
-                    WorkSheet1.Cells[1, 17].Value = "Business Address";
+                    WorkSheet1.Cells[1, 1].Value = "Sr.No";
+                    WorkSheet1.Cells[1, 2].Value = "Full Name";
+                    WorkSheet1.Cells[1, 3].Value = "Surname Of Mosal";
+                    WorkSheet1.Cells[1, 4].Value = "Mobile Number";
+                    WorkSheet1.Cells[1, 5].Value = "Relation";
+                    WorkSheet1.Cells[1, 6].Value = "Gender";
+                    WorkSheet1.Cells[1, 7].Value = "Is Married";
+                    WorkSheet1.Cells[1, 8].Value = "Date Of Birth";
+                    WorkSheet1.Cells[1, 9].Value = "Age";
+                    WorkSheet1.Cells[1, 10].Value = "Higher Study";
+                    WorkSheet1.Cells[1, 11].Value = "Business";
+                    WorkSheet1.Cells[1, 12].Value = "Current Address";
+                    WorkSheet1.Cells[1, 13].Value = "State";
+                    WorkSheet1.Cells[1, 14].Value = "District";
+                    WorkSheet1.Cells[1, 15].Value = "Village";
+                    WorkSheet1.Cells[1, 16].Value = "Pincode";
+                    WorkSheet1.Cells[1, 17].Value = "Industry";
+                    WorkSheet1.Cells[1, 18].Value = "Business Address";
                     //WorkSheet1.Cells[1, 17].Value = "State";
                     //WorkSheet1.Cells[1, 18].Value = "District";
                     //WorkSheet1.Cells[1, 19].Value = "Village";
                     //WorkSheet1.Cells[1, 20].Value = "Pincode";
-                    WorkSheet1.Cells[1, 18].Value = "IsActive";
+                    WorkSheet1.Cells[1, 19].Value = "IsActive";
 
                     recordIndex = 2;
 
+                    int i = 1;
                     foreach (var items in lstSizeObj)
                     {
-                        WorkSheet1.Cells[recordIndex, 1].Value = items.FirstName + " " + items.MiddleName;
-                        WorkSheet1.Cells[recordIndex, 2].Value = items.Surname;
-                        WorkSheet1.Cells[recordIndex, 3].Value = items.MobileNumber;
-                        WorkSheet1.Cells[recordIndex, 4].Value = items.RelationName;
-                        WorkSheet1.Cells[recordIndex, 5].Value = items.GenderName;
-                        WorkSheet1.Cells[recordIndex, 6].Value = items.MeritalStatusName;
-                        WorkSheet1.Cells[recordIndex, 7].Value = items.DateOfBirth.HasValue ? items.DateOfBirth.Value.ToString("dd/MM/yyyy") : string.Empty;
-                        WorkSheet1.Cells[recordIndex, 8].Value = items.Age;
-                        WorkSheet1.Cells[recordIndex, 9].Value = items.HigherStudyName;
-                        WorkSheet1.Cells[recordIndex, 10].Value = items.OccupationName;
-                        WorkSheet1.Cells[recordIndex, 11].Value = items.CurrentAddress;
-                        WorkSheet1.Cells[recordIndex, 12].Value = items.StateName;
-                        WorkSheet1.Cells[recordIndex, 13].Value = items.DistrictName;
-                        WorkSheet1.Cells[recordIndex, 14].Value = items.VillageName;
-                        WorkSheet1.Cells[recordIndex, 15].Value = items.Pincode;
-                        WorkSheet1.Cells[recordIndex, 16].Value = items.Industry;
-                        WorkSheet1.Cells[recordIndex, 17].Value = items.BusinessAddress;
+                        WorkSheet1.Cells[recordIndex, 1].Value = i.ToString();
+                        WorkSheet1.Cells[recordIndex, 1].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                        WorkSheet1.Cells[recordIndex, 2].Value = items.FirstName + " " + items.MiddleName;
+                        WorkSheet1.Cells[recordIndex, 3].Value = items.Surname;
+                        WorkSheet1.Cells[recordIndex, 4].Value = items.MobileNumber;
+                        WorkSheet1.Cells[recordIndex, 5].Value = items.RelationName;
+                        WorkSheet1.Cells[recordIndex, 6].Value = items.GenderName;
+                        WorkSheet1.Cells[recordIndex, 7].Value = items.MeritalStatusName;
+                        WorkSheet1.Cells[recordIndex, 8].Value = items.DateOfBirth.HasValue ? items.DateOfBirth.Value.ToString("dd/MM/yyyy") : string.Empty;
+                        WorkSheet1.Cells[recordIndex, 9].Value = items.Age;
+                        WorkSheet1.Cells[recordIndex, 10].Value = items.HigherStudyName;
+                        WorkSheet1.Cells[recordIndex, 11].Value = items.OccupationName;
+                        WorkSheet1.Cells[recordIndex, 12].Value = items.CurrentAddress;
+                        WorkSheet1.Cells[recordIndex, 13].Value = items.StateName;
+                        WorkSheet1.Cells[recordIndex, 14].Value = items.DistrictName;
+                        WorkSheet1.Cells[recordIndex, 15].Value = items.VillageName;
+                        WorkSheet1.Cells[recordIndex, 16].Value = items.Pincode;
+                        WorkSheet1.Cells[recordIndex, 17].Value = items.IndustryName;
+                        WorkSheet1.Cells[recordIndex, 18].Value = items.BusinessAddress;
                         //WorkSheet1.Cells[recordIndex, 17].Value = items.StateName;
                         //WorkSheet1.Cells[recordIndex, 18].Value = items.DistrictName;
                         //WorkSheet1.Cells[recordIndex, 19].Value = items.VillageName;
                         //WorkSheet1.Cells[recordIndex, 20].Value = items.Pincode;
-                        WorkSheet1.Cells[recordIndex, 18].Value = items.IsActive == true ? "Active" : "Inactive";
+                        WorkSheet1.Cells[recordIndex, 19].Value = items.IsActive == true ? "Active" : "Inactive";
 
                         recordIndex += 1;
 
@@ -326,34 +330,41 @@ namespace AVCommunity.API.Controllers.Admin
                         var vUser_Search = new User_Search();
                         vUser_Search.RegisterUserId = items.Id;
 
+                        int j = 1;
                         IEnumerable<User_Response> lstMUserObj = await _userRepository.GetUserList(vUser_Search);
                         foreach (var mitems in lstMUserObj)
                         {
-                            WorkSheet1.Cells[recordIndex, 1].Value = mitems.FirstName + " " + mitems.MiddleName;
-                            WorkSheet1.Cells[recordIndex, 2].Value = mitems.Surname;
-                            WorkSheet1.Cells[recordIndex, 3].Value = mitems.MobileNumber;
-                            WorkSheet1.Cells[recordIndex, 4].Value = mitems.RelationName;
-                            WorkSheet1.Cells[recordIndex, 5].Value = mitems.GenderName;
-                            WorkSheet1.Cells[recordIndex, 6].Value = mitems.MeritalStatusName;
-                            WorkSheet1.Cells[recordIndex, 7].Value = mitems.DateOfBirth.HasValue ? mitems.DateOfBirth.Value.ToString("dd/MM/yyyy") : string.Empty;
-                            WorkSheet1.Cells[recordIndex, 8].Value = mitems.Age;
-                            WorkSheet1.Cells[recordIndex, 9].Value = mitems.HigherStudyName;
-                            WorkSheet1.Cells[recordIndex, 10].Value = mitems.OccupationName;
-                            WorkSheet1.Cells[recordIndex, 11].Value = mitems.CurrentAddress;
-                            WorkSheet1.Cells[recordIndex, 12].Value = mitems.StateName;
-                            WorkSheet1.Cells[recordIndex, 13].Value = mitems.DistrictName;
-                            WorkSheet1.Cells[recordIndex, 14].Value = mitems.VillageName;
-                            WorkSheet1.Cells[recordIndex, 15].Value = mitems.Pincode;
-                            WorkSheet1.Cells[recordIndex, 16].Value = items.Industry;
-                            WorkSheet1.Cells[recordIndex, 17].Value = mitems.CurrentAddress;
+                            WorkSheet1.Cells[recordIndex, 1].Value = i + "." + j;
+                            WorkSheet1.Cells[recordIndex, 1].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                            WorkSheet1.Cells[recordIndex, 2].Value = mitems.FirstName + " " + mitems.MiddleName;
+                            WorkSheet1.Cells[recordIndex, 3].Value = mitems.Surname;
+                            WorkSheet1.Cells[recordIndex, 4].Value = mitems.MobileNumber;
+                            WorkSheet1.Cells[recordIndex, 5].Value = mitems.RelationName;
+                            WorkSheet1.Cells[recordIndex, 6].Value = mitems.GenderName;
+                            WorkSheet1.Cells[recordIndex, 7].Value = mitems.MeritalStatusName;
+                            WorkSheet1.Cells[recordIndex, 8].Value = mitems.DateOfBirth.HasValue ? mitems.DateOfBirth.Value.ToString("dd/MM/yyyy") : string.Empty;
+                            WorkSheet1.Cells[recordIndex, 9].Value = mitems.Age;
+                            WorkSheet1.Cells[recordIndex, 10].Value = mitems.HigherStudyName;
+                            WorkSheet1.Cells[recordIndex, 11].Value = mitems.OccupationName;
+                            WorkSheet1.Cells[recordIndex, 12].Value = mitems.CurrentAddress;
+                            WorkSheet1.Cells[recordIndex, 13].Value = mitems.StateName;
+                            WorkSheet1.Cells[recordIndex, 14].Value = mitems.DistrictName;
+                            WorkSheet1.Cells[recordIndex, 15].Value = mitems.VillageName;
+                            WorkSheet1.Cells[recordIndex, 16].Value = mitems.Pincode;
+                            WorkSheet1.Cells[recordIndex, 17].Value = items.IndustryName;
+                            WorkSheet1.Cells[recordIndex, 18].Value = mitems.CurrentAddress;
                             //WorkSheet1.Cells[recordIndex, 17].Value = mitems.StateName;
                             //WorkSheet1.Cells[recordIndex, 18].Value = mitems.DistrictName;
                             //WorkSheet1.Cells[recordIndex, 19].Value = mitems.VillageName;
                             //WorkSheet1.Cells[recordIndex, 20].Value = mitems.Pincode;
-                            WorkSheet1.Cells[recordIndex, 18].Value = mitems.IsActive == true ? "Active" : "Inactive";
+                            WorkSheet1.Cells[recordIndex, 19].Value = mitems.IsActive == true ? "Active" : "Inactive";
 
                             recordIndex += 1;
+
+                            j++;
                         }
+
+                        i++;
                     }
 
                     WorkSheet1.Column(1).AutoFit();
