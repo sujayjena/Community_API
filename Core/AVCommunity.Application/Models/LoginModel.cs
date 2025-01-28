@@ -92,6 +92,8 @@ namespace AVCommunity.Application.Models
         public string MobileNumber { get; set; }
         public string EmailId { get; set; }
         public string UserType { get; set; }
+        public int DistrictId { get; set; }
+        public string VillageId { get; set; }
         public bool IsWebUser { get; set; }
         public bool IsMobileUser { get; set; }
         public bool IsActive { get; set; }

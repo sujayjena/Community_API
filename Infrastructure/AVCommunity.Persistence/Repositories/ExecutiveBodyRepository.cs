@@ -39,6 +39,8 @@ namespace AVCommunity.Persistence.Repositories
         public async Task<IEnumerable<ExecutiveBody_Response>> GetExecutiveBodyList(ExecutiveBody_Search parameters)
         {
             DynamicParameters queryParameters = new DynamicParameters();
+            queryParameters.Add("@DistrictId", parameters.DistrictId);
+            queryParameters.Add("@VillageId", parameters.VillageId);
             queryParameters.Add("@SearchText", parameters.SearchText.SanitizeValue());
             queryParameters.Add("@IsActive", parameters.IsActive);
             queryParameters.Add("@PageNo", parameters.PageNo);

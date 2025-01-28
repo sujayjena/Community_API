@@ -188,6 +188,10 @@ namespace AVCommunity.Application.Models
     public class User_Search : BaseSearchEntity
     {
         public int? RegisterUserId { get; set; }
+        public int? DistrictId { get; set; }
+
+        [DefaultValue("")]
+        public string? VillageId { get; set; }
     }
 
     public class GlobalUser_Search : BaseSearchEntity
@@ -282,6 +286,10 @@ namespace AVCommunity.Application.Models
     {
         public int? FromAge { get; set; }
         public int? ToAge { get; set; }
+        public int? DistrictId { get; set; }
+
+        [DefaultValue("")]
+        public string? VillageId { get; set; }
     }
 
     public class Champion_Response : BaseResponseEntity
@@ -317,6 +325,21 @@ namespace AVCommunity.Application.Models
         public int? UserId { get; set; }
         public int? IndustryId { get; set; }
         public string? IndustryName { get; set; }
+    }
+
+    public class ForgotPassword_Request
+    {
+        [DefaultValue("")]
+        public string? MiddleName { get; set; }
+
+        [DefaultValue("")]
+        public string? MobileNumber { get; set; }
+
+        [DefaultValue("")]
+        public string? NewPassword { get; set; }
+
+        [DefaultValue("")]
+        public string? ConfirmPassword { get; set; }
     }
 
     #endregion

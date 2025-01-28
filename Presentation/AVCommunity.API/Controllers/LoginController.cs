@@ -70,7 +70,8 @@ namespace AVCommunity.API.Controllers
 
                     if (loginResponse.UserId != null)
                     {
-                        string strBrnachIdList = string.Empty;
+                        int districtId = 0;
+                        string strVillageIdList = string.Empty;
 
                         var vRoleList = await _rolePermissionRepository.GetEmployeePermissionById(Convert.ToInt64(loginResponse.UserId));
 
@@ -82,7 +83,17 @@ namespace AVCommunity.API.Controllers
                         };
                         //var vUserNotificationList = await _notificationRepository.GetNotificationList(vNotification_SearchObj);
 
-                        var vUserDetail = await _userRepository.GetUserById(Convert.ToInt32(loginResponse.UserId));
+                        var vUserDetail = await _userRepository.GetAdminById(Convert.ToInt32(loginResponse.UserId));
+                        if(vUserDetail != null)
+                        {
+                            districtId = Convert.ToInt32(vUserDetail.AdminDistrictId);
+                        }
+
+                        var vUserVillageMappingDetail = await _userRepository.GetAdminVillageByEmployeeId(EmployeeId: Convert.ToInt32(loginResponse.UserId), VillageId: 0);
+                        if (vUserVillageMappingDetail.ToList().Count > 0)
+                        {
+                            strVillageIdList = string.Join(",", vUserVillageMappingDetail.ToList().OrderBy(x => x.VillageId).Select(x => x.VillageId));
+                        }
 
                         employeeSessionData = new SessionDataEmployee
                         {
@@ -92,6 +103,8 @@ namespace AVCommunity.API.Controllers
                             MobileNumber = loginResponse.MobileNumber,
                             EmailId = loginResponse.EmailId,
                             UserType = loginResponse.UserType,
+                            DistrictId = districtId,
+                            VillageId = strVillageIdList,
                             IsMobileUser = loginResponse.IsMobileUser,
                             IsWebUser = loginResponse.IsWebUser,
                             IsActive = loginResponse.IsActive,

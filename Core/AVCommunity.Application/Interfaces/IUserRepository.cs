@@ -42,6 +42,8 @@ namespace AVCommunity.Application.Interfaces
 
         Task<IEnumerable<UserIndustry_Response>> GetUserIndustryByEmployeeId(int EmployeeId, int IndustryId);
 
+        Task<int> ForgotPassword(ForgotPassword_Request parameters);
+
         #endregion
     }
 }

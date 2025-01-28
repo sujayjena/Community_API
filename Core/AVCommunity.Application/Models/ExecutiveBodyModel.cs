@@ -12,6 +12,10 @@ namespace AVCommunity.Application.Models
 {
     public class ExecutiveBody_Search : BaseSearchEntity
     {
+        public int? DistrictId { get; set; }
+
+        [DefaultValue("")]
+        public string? VillageId { get; set; }
     }
 
     public class ExecutiveBody_Request : BaseEntity

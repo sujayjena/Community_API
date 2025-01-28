@@ -19,6 +19,10 @@ namespace AVCommunity.Application.Models
         public DateTime? ToDate { get; set; }
         public int? StatusId { get; set; }
         public int? RegisterUserId { get; set; }
+        public int? DistrictId { get; set; }
+
+        [DefaultValue("")]
+        public string? VillageId { get; set; }
     }
 
     public class Death_Request : BaseEntity

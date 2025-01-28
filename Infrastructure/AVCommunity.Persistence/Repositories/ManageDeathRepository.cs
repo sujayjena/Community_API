@@ -44,6 +44,8 @@ namespace AVCommunity.Persistence.Repositories
             queryParameters.Add("@ToDate", parameters.ToDate);
             queryParameters.Add("@StatusId", parameters.StatusId);
             queryParameters.Add("@RegisterUserId", parameters.RegisterUserId);
+            queryParameters.Add("@DistrictId", parameters.DistrictId);
+            queryParameters.Add("@VillageId", parameters.VillageId);
             queryParameters.Add("@SearchText", parameters.SearchText.SanitizeValue());
             queryParameters.Add("@IsActive", parameters.IsActive);
             queryParameters.Add("@PageNo", parameters.PageNo);

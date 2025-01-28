@@ -154,6 +154,8 @@ namespace AVCommunity.Persistence.Repositories
         {
             DynamicParameters queryParameters = new DynamicParameters();
             queryParameters.Add("@RegisterUserId", parameters.RegisterUserId);
+            queryParameters.Add("@DistrictId", parameters.DistrictId);
+            queryParameters.Add("@VillageId", parameters.VillageId);
             queryParameters.Add("@SearchText", parameters.SearchText.SanitizeValue());
             queryParameters.Add("@IsActive", parameters.IsActive);
             queryParameters.Add("@PageNo", parameters.PageNo);
@@ -192,6 +194,8 @@ namespace AVCommunity.Persistence.Repositories
             DynamicParameters queryParameters = new DynamicParameters();
             queryParameters.Add("@FromAge", parameters.FromAge);
             queryParameters.Add("@ToAge", parameters.ToAge);
+            queryParameters.Add("@DistrictId", parameters.DistrictId);
+            queryParameters.Add("@VillageId", parameters.VillageId);
             queryParameters.Add("@SearchText", parameters.SearchText.SanitizeValue());
             queryParameters.Add("@IsActive", parameters.IsActive);
             queryParameters.Add("@PageNo", parameters.PageNo);
@@ -258,6 +262,19 @@ namespace AVCommunity.Persistence.Repositories
 
             return result;
         }
+
+        public async Task<int> ForgotPassword(ForgotPassword_Request parameters)
+        {
+            DynamicParameters queryParameters = new DynamicParameters();
+            queryParameters.Add("@MiddleName", parameters.MiddleName);
+            queryParameters.Add("@MobileNumber", parameters.MobileNumber);
+            queryParameters.Add("@NewPassword", parameters.NewPassword);
+            queryParameters.Add("@ConfirmPassword", !string.IsNullOrWhiteSpace(parameters.ConfirmPassword) ? EncryptDecryptHelper.EncryptString(parameters.ConfirmPassword) : string.Empty);
+            queryParameters.Add("@UserId", SessionManager.LoggedInUserId);
+
+            return await SaveByStoredProcedure<int>("ForgotPassword", queryParameters);
+        }
+
 
         #endregion
     }

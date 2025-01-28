@@ -455,6 +455,37 @@ namespace AVCommunity.API.Controllers.Admin
             return _response;
         }
 
+        [Route("[action]")]
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<ResponseModel> ForgotPassword(ForgotPassword_Request parameters)
+        {
+            int result = await _userRepository.ForgotPassword(parameters);
+
+            if (result == (int)SaveOperationEnums.NoRecordExists)
+            {
+                _response.Message = "No record exists";
+                _response.IsSuccess = false;
+            }
+            else if (result == (int)SaveOperationEnums.ReocrdExists)
+            {
+                _response.Message = "Record is already exists";
+                _response.IsSuccess = false;
+            }
+            else if (result == (int)SaveOperationEnums.NoResult)
+            {
+                _response.Message = "Something went wrong, please try again";
+                _response.IsSuccess = false;
+            }
+            else
+            {
+                _response.Message = "Record details saved sucessfully";
+            }
+
+            _response.Id = result;
+            return _response;
+        }
+
         #endregion
     }
 }
