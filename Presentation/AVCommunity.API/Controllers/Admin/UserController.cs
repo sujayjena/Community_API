@@ -464,7 +464,7 @@ namespace AVCommunity.API.Controllers.Admin
 
             if (result == (int)SaveOperationEnums.NoRecordExists)
             {
-                _response.Message = "No record exists";
+                _response.Message = "User data does not exist please enter correct details";
                 _response.IsSuccess = false;
             }
             else if (result == (int)SaveOperationEnums.ReocrdExists)

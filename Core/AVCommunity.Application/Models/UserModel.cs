@@ -192,6 +192,9 @@ namespace AVCommunity.Application.Models
 
         [DefaultValue("")]
         public string? VillageId { get; set; }
+
+        [DefaultValue(null)]
+        public bool? IsSplit { get; set; }
     }
 
     public class GlobalUser_Search : BaseSearchEntity
