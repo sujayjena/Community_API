@@ -187,7 +187,9 @@ namespace AVCommunity.Application.Models
 
     public class User_Search : BaseSearchEntity
     {
+        [DefaultValue(null)]
         public int? RegisterUserId { get; set; }
+
         public int? DistrictId { get; set; }
 
         [DefaultValue("")]
