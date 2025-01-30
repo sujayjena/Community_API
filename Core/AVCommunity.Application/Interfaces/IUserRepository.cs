@@ -44,6 +44,10 @@ namespace AVCommunity.Application.Interfaces
 
         Task<int> ForgotPassword(ForgotPassword_Request parameters);
 
+        Task<int> UserApproveNReject(User_ApproveNReject parameters);
+
+        Task<IEnumerable<UserRemarkLog_Response>> GetUserRemarkLogListById(UserRemarkLog_Search parameters);
+
         #endregion
     }
 }

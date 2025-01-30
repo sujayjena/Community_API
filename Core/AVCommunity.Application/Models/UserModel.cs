@@ -347,5 +347,30 @@ namespace AVCommunity.Application.Models
         public string? ConfirmPassword { get; set; }
     }
 
+    public class User_ApproveNReject
+    {
+        public int? Id { get; set; }
+        public int? StatusId { get; set; }
+
+        [DefaultValue("")]
+        public string? Remarks { get; set; }
+    }
+
+    public class UserRemarkLog_Search
+    {
+        [DefaultValue(0)]
+        public int? EmployeeId { get; set; }
+    }
+
+    public class UserRemarkLog_Response : BaseEntity
+    {
+        public int? EmployeeId { get; set; }
+        public string? Remarks { get; set; }
+        public int? StatusId { get; set; }
+        public string? StatusName { get; set; }
+        public DateTime? CreatedDate { get; set; }
+        public int? CreatedBy { get; set; }
+        public string? CreatorName { get; set; }
+    }
     #endregion
 }

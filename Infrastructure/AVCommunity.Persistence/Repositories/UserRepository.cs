@@ -276,6 +276,27 @@ namespace AVCommunity.Persistence.Repositories
             return await SaveByStoredProcedure<int>("ForgotPassword", queryParameters);
         }
 
+        public async Task<int> UserApproveNReject(User_ApproveNReject parameters)
+        {
+            DynamicParameters queryParameters = new DynamicParameters();
+
+            queryParameters.Add("@Id", parameters.Id);
+            queryParameters.Add("@StatusId", parameters.StatusId);
+            queryParameters.Add("@Remarks", parameters.Remarks);
+            queryParameters.Add("@UserId", SessionManager.LoggedInUserId);
+
+            return await SaveByStoredProcedure<int>("UserApproveNReject", queryParameters);
+        }
+
+        public async Task<IEnumerable<UserRemarkLog_Response>> GetUserRemarkLogListById(UserRemarkLog_Search parameters)
+        {
+            DynamicParameters queryParameters = new DynamicParameters();
+            queryParameters.Add("@EmployeeId", parameters.EmployeeId);
+
+            var result = await ListByStoredProcedure<UserRemarkLog_Response>("GetUserRemarkLogListById", queryParameters);
+
+            return result;
+        }
 
         #endregion
     }
