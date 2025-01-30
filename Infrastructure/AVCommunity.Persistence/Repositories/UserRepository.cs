@@ -157,6 +157,7 @@ namespace AVCommunity.Persistence.Repositories
             queryParameters.Add("@DistrictId", parameters.DistrictId);
             queryParameters.Add("@VillageId", parameters.VillageId);
             queryParameters.Add("@IsSplit", parameters.IsSplit);
+            queryParameters.Add("@StatusId", parameters.StatusId);
             queryParameters.Add("@SearchText", parameters.SearchText.SanitizeValue());
             queryParameters.Add("@IsActive", parameters.IsActive);
             queryParameters.Add("@PageNo", parameters.PageNo);

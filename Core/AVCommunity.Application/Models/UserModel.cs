@@ -197,6 +197,8 @@ namespace AVCommunity.Application.Models
 
         [DefaultValue(null)]
         public bool? IsSplit { get; set; }
+
+        public int? StatusId { get; set; }
     }
 
     public class GlobalUser_Search : BaseSearchEntity
