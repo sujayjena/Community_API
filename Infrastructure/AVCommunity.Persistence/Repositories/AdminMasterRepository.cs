@@ -335,5 +335,48 @@ namespace AVCommunity.Persistence.Repositories
         }
 
         #endregion
+
+        #region Version Details
+        public async Task<int> SaveVersionDetails(VersionDetails_Request parameters)
+        {
+            DynamicParameters queryParameters = new DynamicParameters();
+            queryParameters.Add("@Id", parameters.Id);
+            queryParameters.Add("@AppVersionNo", parameters.AppVersionNo.SanitizeValue());
+            queryParameters.Add("@AppVersionName", parameters.AppVersionName.SanitizeValue());
+            queryParameters.Add("@UpdateMsg", parameters.UpdateMsg.SanitizeValue());
+            queryParameters.Add("@PackageName", parameters.PackageName.SanitizeValue());
+            queryParameters.Add("@UpdateType", parameters.UpdateType.SanitizeValue());
+            queryParameters.Add("@IsActive", parameters.IsActive);
+            queryParameters.Add("@UserId", SessionManager.LoggedInUserId);
+
+            return await SaveByStoredProcedure<int>("SaveVersionDetails", queryParameters);
+        }
+
+        public async Task<IEnumerable<VersionDetails_Response>> GetVersionDetailsList(VersionDetails_Search parameters)
+        {
+            DynamicParameters queryParameters = new DynamicParameters();
+            queryParameters.Add("@PackageName", parameters.PackageName);
+            queryParameters.Add("@UpdateType", parameters.UpdateType);
+            queryParameters.Add("@SearchText", parameters.SearchText.SanitizeValue());
+            queryParameters.Add("@IsActive", parameters.IsActive);
+            queryParameters.Add("@PageNo", parameters.PageNo);
+            queryParameters.Add("@PageSize", parameters.PageSize);
+            queryParameters.Add("@Total", parameters.Total, null, System.Data.ParameterDirection.Output);
+            queryParameters.Add("@UserId", SessionManager.LoggedInUserId);
+
+            var result = await ListByStoredProcedure<VersionDetails_Response>("GetVersionDetailsList", queryParameters);
+            parameters.Total = queryParameters.Get<int>("Total");
+
+            return result;
+        }
+
+        public async Task<VersionDetails_Response?> GetVersionDetailsById(int Id)
+        {
+            DynamicParameters queryParameters = new DynamicParameters();
+            queryParameters.Add("@Id", Id);
+            return (await ListByStoredProcedure<VersionDetails_Response>("GetVersionDetailsById", queryParameters)).FirstOrDefault();
+        }
+
+        #endregion
     }
 }
