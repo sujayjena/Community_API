@@ -146,6 +146,7 @@ namespace AVCommunity.Persistence.Repositories
             queryParameters.Add("@MobileUniqueId", parameters.MobileUniqueId);
             queryParameters.Add("@RegisterUserId", parameters.RegisterUserId);
             queryParameters.Add("@IndustryName", parameters.IndustryName);
+            queryParameters.Add("@NativeName", parameters.NativeName);
             queryParameters.Add("@IsActive", parameters.IsActive);
             queryParameters.Add("@UserId", SessionManager.LoggedInUserId);
 

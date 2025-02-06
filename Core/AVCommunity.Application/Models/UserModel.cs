@@ -176,6 +176,8 @@ namespace AVCommunity.Application.Models
 
         public string? IndustryName { get; set; }
 
+        public string? NativeName { get; set; }
+
         [JsonIgnore]
         [DefaultValue("User")]
         public string? UserType { get; set; }
@@ -219,50 +221,33 @@ namespace AVCommunity.Application.Models
         public string? FirstName { get; set; }
         public string? MiddleName { get; set; }
         public string? LastName { get; set; }
-
         public string? Surname { get; set; }
-
         public string? MobileNumber { get; set; }
-
         public string? EmailId { get; set; }
-
         public string? Password { get; set; }
-
         public int? RelationId { get; set; }
         public string? RelationName { get; set; }
-
         public int? GenderId { get; set; }
         public string? GenderName { get; set; }
-
         public int? MeritalStatusId { get; set; }
         public string? MeritalStatusName { get; set; }
-
         public DateTime? DateOfBirth { get; set; }
         public int? Age { get; set; }
-
         public int? HigherStudyId { get; set; }
         public string? HigherStudyName { get; set; }
-
         public string? CurrentAddress { get; set; }
         public int? StateId { get; set; }
         public string? StateName { get; set; }
-
         public int? DistrictId { get; set; }
         public string? DistrictName { get; set; }
-
         public int? VillageId { get; set; }
         public string? VillageName { get; set; }
-
         public int? Pincode { get; set; }
-
         public int? OccupationId { get; set; }
         public string? OccupationName { get; set; }
-
         public string? BusinessAddress { get; set; }
-
         public int? BusinessStateId { get; set; }
         public string? BusinessStateName { get; set; }
-
         public int? BusinessDistrictId { get; set; }
         public string? BusinessDistrictName { get; set; }
         public int? BusinessVillageId { get; set; }
@@ -278,6 +263,7 @@ namespace AVCommunity.Application.Models
         public int? RegisterUserId { get; set; }
         public string? RegisterUser { get; set; }
         public string? IndustryName { get; set; }
+        public string? NativeName { get; set; }
         public bool? IsDeath { get; set; }
         public bool? IsActive { get; set; }
         public List<UserIndustry_Response>? UserIndustryList { get; set; }
