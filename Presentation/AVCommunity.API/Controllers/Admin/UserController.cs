@@ -449,7 +449,20 @@ namespace AVCommunity.API.Controllers.Admin
         [HttpPost]
         public async Task<ResponseModel> GetGlobalUserList(GlobalUser_Search parameters)
         {
-            IEnumerable<User_Response> lstUsers = await _userRepository.GetGlobalUserList(parameters);
+            IEnumerable<GloberUser_Response> lstUsers = await _userRepository.GetGlobalUserList(parameters);
+            foreach(var mUsers in lstUsers)
+            {
+                var searchUser = new User_Search();
+                searchUser.RegisterUserId = mUsers.Id;
+                searchUser.DistrictId=0;
+                searchUser.VillageId = "";
+                searchUser.IsSplit = null;
+                searchUser.StatusId = 0;
+
+                var memberUserList = await _userRepository.GetUserList(searchUser);
+                mUsers.MemberUserList = memberUserList.ToList();
+            }
+
             _response.Data = lstUsers.ToList();
             _response.Total = parameters.Total;
             return _response;

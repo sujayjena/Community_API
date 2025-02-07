@@ -224,7 +224,7 @@ namespace AVCommunity.Persistence.Repositories
             return await SaveByStoredProcedure<int>("SaveSplit", queryParameters);
         }
 
-        public async Task<IEnumerable<User_Response>> GetGlobalUserList(GlobalUser_Search parameters)
+        public async Task<IEnumerable<GloberUser_Response>> GetGlobalUserList(GlobalUser_Search parameters)
         {
             DynamicParameters queryParameters = new DynamicParameters();
             queryParameters.Add("@EmployeeId", parameters.EmployeeId);
@@ -238,7 +238,7 @@ namespace AVCommunity.Persistence.Repositories
             queryParameters.Add("@Total", parameters.Total, null, System.Data.ParameterDirection.Output);
             queryParameters.Add("@UserId", SessionManager.LoggedInUserId);
 
-            var result = await ListByStoredProcedure<User_Response>("GetGlobalUserList", queryParameters);
+            var result = await ListByStoredProcedure<GloberUser_Response>("GetGlobalUserList", queryParameters);
 
             parameters.Total = queryParameters.Get<int>("Total");
 

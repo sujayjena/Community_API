@@ -36,7 +36,7 @@ namespace AVCommunity.Application.Interfaces
 
         Task<int> SaveSplit(Split_Request parameters);
 
-        Task<IEnumerable<User_Response>> GetGlobalUserList(GlobalUser_Search parameters);
+        Task<IEnumerable<GloberUser_Response>> GetGlobalUserList(GlobalUser_Search parameters);
 
         Task<int> SaveUserIndustry(UserIndustry_Request parameters);
 
