@@ -178,6 +178,8 @@ namespace AVCommunity.Application.Models
 
         public string? NativeName { get; set; }
 
+        public int? BloodGroupId { get; set; }
+
         [JsonIgnore]
         [DefaultValue("User")]
         public string? UserType { get; set; }
@@ -264,6 +266,8 @@ namespace AVCommunity.Application.Models
         public string? RegisterUser { get; set; }
         public string? IndustryName { get; set; }
         public string? NativeName { get; set; }
+        public int? BloodGroupId { get; set; }
+        public string? BloodGroup { get; set; }
         public bool? IsDeath { get; set; }
         public bool? IsActive { get; set; }
         public List<UserIndustry_Response>? UserIndustryList { get; set; }
@@ -322,6 +326,8 @@ namespace AVCommunity.Application.Models
         public string? RegisterUser { get; set; }
         public string? IndustryName { get; set; }
         public string? NativeName { get; set; }
+        public int? BloodGroupId { get; set; }
+        public string? BloodGroup { get; set; }
         public bool? IsDeath { get; set; }
         public bool? IsActive { get; set; }
         public List<User_Response>? MemberUserList { get; set; }

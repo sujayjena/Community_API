@@ -147,6 +147,7 @@ namespace AVCommunity.Persistence.Repositories
             queryParameters.Add("@RegisterUserId", parameters.RegisterUserId);
             queryParameters.Add("@IndustryName", parameters.IndustryName);
             queryParameters.Add("@NativeName", parameters.NativeName);
+            queryParameters.Add("@BloodGroupId", parameters.BloodGroupId);
             queryParameters.Add("@IsActive", parameters.IsActive);
             queryParameters.Add("@UserId", SessionManager.LoggedInUserId);
 
