@@ -165,7 +165,7 @@ namespace AVCommunity.API.Controllers.Admin
             return _response;
         }
 
-
+        [AllowAnonymous]
         [Route("[action]")]
         [HttpPost]
         public async Task<ResponseModel> GetBloodGroupList(BloodGroup_Search parameters)
