@@ -21,6 +21,10 @@ namespace AVCommunity.Application.Models
         [DefaultValue("W")]
         public string IsWebOrMobileUser { get; set; }
 
+        [DefaultValue("Admin")]
+        [JsonIgnore]
+        public string? UserType { get; set; }
+
         public bool Remember { get; set; }
     }
 
@@ -40,6 +44,7 @@ namespace AVCommunity.Application.Models
 
         [DefaultValue("M")]
         public string IsWebOrMobileUser { get; set; }
+
         public bool Remember { get; set; }
     }
 

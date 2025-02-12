@@ -41,6 +41,7 @@ namespace AVCommunity.API.Controllers
             loginParameters.MobileUniqueId = parameters.MobileUniqueId;
             loginParameters.Remember = parameters.Remember;
             loginParameters.IsWebOrMobileUser = parameters.IsWebOrMobileUser;
+            loginParameters.UserType = "User";
 
             //_response.Data = await Login(loginParameters);
 
@@ -57,6 +58,11 @@ namespace AVCommunity.API.Controllers
             SessionDataEmployee employeeSessionData;
             UsersLoginSessionData? loginResponse;
             UserLoginHistorySaveParameters loginHistoryParameters;
+
+            if(parameters.IsWebOrMobileUser == "W")
+            {
+                parameters.UserType = "Admin";
+            }
 
             parameters.Password = EncryptDecryptHelper.EncryptString(parameters.Password);
 
