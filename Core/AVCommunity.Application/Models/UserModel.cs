@@ -216,6 +216,9 @@ namespace AVCommunity.Application.Models
         public int? BusinessId { get; set; }
         public int? DistrictId { get; set; }
         public int? VillageId { get; set; }
+
+        [DefaultValue("W")]
+        public string? AppType { get; set; }
     }
 
     public class User_Response : BaseResponseEntity

@@ -233,6 +233,7 @@ namespace AVCommunity.Persistence.Repositories
             queryParameters.Add("@BusinessId", parameters.BusinessId);
             queryParameters.Add("@DistrictId", parameters.DistrictId);
             queryParameters.Add("@VillageId", parameters.VillageId);
+            queryParameters.Add("@AppType", parameters.AppType);
             queryParameters.Add("@SearchText", parameters.SearchText.SanitizeValue());
             queryParameters.Add("@IsActive", parameters.IsActive);
             queryParameters.Add("@PageNo", parameters.PageNo);
