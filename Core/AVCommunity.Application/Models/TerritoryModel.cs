@@ -1,6 +1,7 @@
 ﻿using AVCommunity.Domain.Entities;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
@@ -99,10 +100,12 @@ namespace AVCommunity.Application.Models
     public class Territories_State_Dist_Village_Search
     {
         public int? StateId { get; set; }
-
         public int? DistrictId { get; set; }
-
         public int? VillageId { get; set; }
+        public int? AdminDistrictId { get; set; }
+
+        [DefaultValue("")]
+        public string? AdminVillageId { get; set; }
     }
 
     public class Territories_State_Dist_Village_Response

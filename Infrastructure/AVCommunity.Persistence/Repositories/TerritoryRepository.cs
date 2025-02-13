@@ -178,6 +178,8 @@ namespace AVCommunity.Persistence.Repositories
             queryParameters.Add("@StateId", parameters.StateId);
             queryParameters.Add("@DistId", parameters.DistrictId);
             queryParameters.Add("@VillageId", parameters.VillageId);
+            queryParameters.Add("@AdminDistrictId", parameters.AdminDistrictId);
+            queryParameters.Add("@AdminVillageId", parameters.AdminVillageId);
 
             var result = await ListByStoredProcedure<Territories_State_Dist_Village_Response>("GetTerritories_State_Dist_Village_List_ById", queryParameters);
 
