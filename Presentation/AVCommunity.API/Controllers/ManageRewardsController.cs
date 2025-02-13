@@ -75,34 +75,38 @@ namespace AVCommunity.API.Controllers
                     {
                         districtId = Convert.ToInt32(vUserDetails.DistrictId == null ? 0 : vUserDetails.DistrictId);
                         villageId = Convert.ToInt32(vUserDetails.VillageId == null ? 0 : vUserDetails.VillageId);
-                        string userName = string.Concat(vUserDetails.FirstName, " ", vUserDetails.MiddleName, " ", vUserDetails.Surname);
-                        string notifyMessage = String.Format(@"પ્રિય, કાસુન્દ્રા પરિવાર તરફથી શુભેચ્છાઓ! વપરાશકર્તાએ પુરસ્કાર મળ્યાની નોંધ કરી છે: {0} અને {1}।", userName.Trim(), vUserDetails.MobileNumber);
 
-                        var vAdminVillageUser = await _userRepository.GetAdminVillageByEmployeeId(0, villageId); // Village Wise Admin User 
-                        var vAdminVillageUserList = vAdminVillageUser.ToList().Select(x => x.EmployeeId);
-
-                        var vAdminSearch = new Admin_Search();
-                        vAdminSearch.AdminDistrictId = districtId;
-
-                        var vAdminUserByDistrict = await _userRepository.GetAdminList(vAdminSearch); // Admin District Wise Admin User 
-                        var vAdminUserFinalList = vAdminUserByDistrict.Where(x => vAdminVillageUserList.Contains(x.Id)).ToList();
-                        if (vAdminUserFinalList.Count > 0)
+                        if (districtId > 0 || villageId > 0)
                         {
-                            foreach (var usr in vAdminUserFinalList)
-                            {
-                                var vNotifyObj = new Notification_Request()
-                                {
-                                    Subject = "Manage Rewards",
-                                    SendTo = "Admin",
-                                    //CustomerId = vWorkOrderObj.CustomerId,
-                                    //CustomerMessage = NotifyMessage,
-                                    EmployeeId = usr.Id,
-                                    EmployeeMessage = notifyMessage,
-                                    RefValue1 = "",
-                                    ReadUnread = false
-                                };
+                            string userName = string.Concat(vUserDetails.FirstName, " ", vUserDetails.MiddleName, " ", vUserDetails.Surname);
+                            string notifyMessage = String.Format(@"પ્રિય, કાસુન્દ્રા પરિવાર તરફથી શુભેચ્છાઓ! વપરાશકર્તાએ પુરસ્કાર મળ્યાની નોંધ કરી છે: {0} અને {1}।", userName.Trim(), vUserDetails.MobileNumber);
 
-                                int resultNotification = await _notificationRepository.SaveNotification(vNotifyObj);
+                            var vAdminVillageUser = await _userRepository.GetAdminVillageByEmployeeId(0, villageId); // Village Wise Admin User 
+                            var vAdminVillageUserList = vAdminVillageUser.ToList().Select(x => x.EmployeeId);
+
+                            var vAdminSearch = new Admin_Search();
+                            vAdminSearch.AdminDistrictId = districtId;
+
+                            var vAdminUserByDistrict = await _userRepository.GetAdminList(vAdminSearch); // Admin District Wise Admin User 
+                            var vAdminUserFinalList = vAdminUserByDistrict.Where(x => vAdminVillageUserList.Contains(x.Id)).ToList();
+                            if (vAdminUserFinalList.Count > 0)
+                            {
+                                foreach (var usr in vAdminUserFinalList)
+                                {
+                                    var vNotifyObj = new Notification_Request()
+                                    {
+                                        Subject = "Manage Rewards",
+                                        SendTo = "Admin",
+                                        //CustomerId = vWorkOrderObj.CustomerId,
+                                        //CustomerMessage = NotifyMessage,
+                                        EmployeeId = usr.Id,
+                                        EmployeeMessage = notifyMessage,
+                                        RefValue1 = "",
+                                        ReadUnread = false
+                                    };
+
+                                    int resultNotification = await _notificationRepository.SaveNotification(vNotifyObj);
+                                }
                             }
                         }
                     }
