@@ -21,14 +21,16 @@ namespace AVCommunity.API.Controllers.Admin
         private readonly IUserRepository _userRepository;
         private readonly ITerritoryRepository _territoryRepository;
         private readonly IAdminMasterRepository _adminMasterRepository;
+        private readonly INotificationRepository _notificationRepository;
         private IFileManager _fileManager;
 
-        public UserController(IUserRepository userRepository, IFileManager fileManager, ITerritoryRepository territoryRepository, IAdminMasterRepository adminMasterRepository)
+        public UserController(IUserRepository userRepository, IFileManager fileManager, ITerritoryRepository territoryRepository, IAdminMasterRepository adminMasterRepository, INotificationRepository notificationRepository)
         {
             _userRepository = userRepository;
             _fileManager = fileManager;
             _territoryRepository = territoryRepository;
             _adminMasterRepository = adminMasterRepository;
+            _notificationRepository = notificationRepository;
 
             _response = new ResponseModel();
             _response.IsSuccess = true;
@@ -96,7 +98,7 @@ namespace AVCommunity.API.Controllers.Admin
 
         [Route("[action]")]
         [HttpPost]
-        public async Task<ResponseModel> GetAdminList(BaseSearchEntity parameters)
+        public async Task<ResponseModel> GetAdminList(Admin_Search parameters)
         {
             IEnumerable<Admin_Response> lstUsers = await _userRepository.GetAdminList(parameters);
             _response.Data = lstUsers.ToList();
@@ -194,6 +196,73 @@ namespace AVCommunity.API.Controllers.Admin
                     int resultUserIndustry = await _userRepository.SaveUserIndustry(vUserIndustryObj);
                 }
 
+                #endregion
+
+                #region Notification
+                if (result > 0 && parameters.Id == 0)
+                {
+                    int districtId = 0;
+                    int villageId = 0;
+                    string userName = "";
+                    string userMobileNo = "";
+
+                    //User
+                    var vUserDetails = await _userRepository.GetUserById(result);
+                    if (vUserDetails != null)
+                    {
+                        districtId = Convert.ToInt32(vUserDetails.DistrictId == null ? 0 : vUserDetails.DistrictId);
+                        villageId = Convert.ToInt32(vUserDetails.VillageId == null ? 0 : vUserDetails.VillageId);
+                        userName = string.Concat(vUserDetails.FirstName," ", vUserDetails.MiddleName, " ", vUserDetails.Surname);
+                        userMobileNo = vUserDetails.MobileNumber;
+
+                        string notifyMessage = String.Format(@"પ્રિય, કાસુન્દ્રા પરિવાર તરફથી શુભેચ્છાઓ! અમારી સાથે જોડાવા માટે આભાર! તમારું ખાતું સફળતાપૂર્વક આ મોબાઇલ નંબર - {0} સાથે બનાવવામાં આવ્યું છે. જો તમને કોઈ પ્રશ્નો હોય, તો કૃપા કરીને સંબંધિત સંચાલક સાથે સંપર્ક કરો।", vUserDetails.MobileNumber);
+
+                        var vNotifyObj = new Notification_Request()
+                        {
+                            Subject = "Manage User",
+                            SendTo = "User",
+                            //CustomerId = vWorkOrderObj.CustomerId,
+                            //CustomerMessage = NotifyMessage,
+                            EmployeeId = vUserDetails.Id,
+                            EmployeeMessage = notifyMessage,
+                            RefValue1 = "",
+                            ReadUnread = false
+                        };
+
+                        int resultNotification = await _notificationRepository.SaveNotification(vNotifyObj);
+                    }
+
+                    //Admin
+                    var vAdminVillageUser = await _userRepository.GetAdminVillageByEmployeeId(0,villageId); // Village Wise Admin User 
+                    var vAdminVillageUserList = vAdminVillageUser.ToList().Select(x => x.EmployeeId);
+
+                    var vAdminSearch = new Admin_Search();
+                    vAdminSearch.AdminDistrictId = districtId;
+
+                    var vAdminUserByDistrict = await _userRepository.GetAdminList(vAdminSearch); // Admin District Wise Admin User 
+                    var vAdminUserFinalList = vAdminUserByDistrict.Where(x => vAdminVillageUserList.Contains(x.Id)).ToList();
+                    if (vAdminUserFinalList.Count > 0)
+                    {
+                        foreach(var usr in vAdminUserFinalList)
+                        {
+                            string notifyMessage = String.Format(@"પ્રિય,કાસુન્દ્રા પરિવાર તરફથી શુભેચ્છાઓ! નવો વપરાશકર્તા {0} મોબાઇલ નંબર {1} સાથે બનાવવામાં આવ્યો છે।", userName.Trim(), userMobileNo);
+
+                            var vNotifyObj = new Notification_Request()
+                            {
+                                Subject = "Manage User",
+                                SendTo = "Admin",
+                                //CustomerId = vWorkOrderObj.CustomerId,
+                                //CustomerMessage = NotifyMessage,
+                                EmployeeId = usr.Id,
+                                EmployeeMessage = notifyMessage,
+                                RefValue1 = "",
+                                ReadUnread = false
+                            };
+
+                            int resultNotification = await _notificationRepository.SaveNotification(vNotifyObj);
+                        }
+                    }
+                }
                 #endregion
             }
 

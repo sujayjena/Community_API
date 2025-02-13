@@ -14,7 +14,7 @@ namespace AVCommunity.Application.Interfaces
 
         Task<int> SaveAdmin(Admin_Request parameters);
 
-        Task<IEnumerable<Admin_Response>> GetAdminList(BaseSearchEntity parameters);
+        Task<IEnumerable<Admin_Response>> GetAdminList(Admin_Search parameters);
 
         Task<Admin_Response?> GetAdminById(long Id);
 

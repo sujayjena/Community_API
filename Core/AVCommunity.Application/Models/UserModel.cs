@@ -15,6 +15,10 @@ namespace AVCommunity.Application.Models
     }
 
     #region Admin
+    public class Admin_Search : BaseSearchEntity
+    {
+        public int? AdminDistrictId { get; set; }
+    }
 
     public class Admin_Request : BaseEntity
     {
@@ -106,6 +110,7 @@ namespace AVCommunity.Application.Models
     }
     public class AdminVillage_Response : BaseEntity
     {
+        public int? EmployeeId { get; set; }
         public int? UserId { get; set; }
         public int? VillageId { get; set; }
         public string? VillageName { get; set; }

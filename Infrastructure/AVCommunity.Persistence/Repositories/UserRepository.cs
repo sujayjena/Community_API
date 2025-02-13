@@ -48,9 +48,10 @@ namespace AVCommunity.Persistence.Repositories
             return await SaveByStoredProcedure<int>("SaveAdmin", queryParameters);
         }
 
-        public async Task<IEnumerable<Admin_Response>> GetAdminList(BaseSearchEntity parameters)
+        public async Task<IEnumerable<Admin_Response>> GetAdminList(Admin_Search parameters)
         {
             DynamicParameters queryParameters = new DynamicParameters();
+            queryParameters.Add("@AdminDistrictId", parameters.AdminDistrictId);
             queryParameters.Add("@SearchText", parameters.SearchText.SanitizeValue());
             queryParameters.Add("@IsActive", parameters.IsActive);
             queryParameters.Add("@PageNo", parameters.PageNo);
