@@ -64,6 +64,7 @@ namespace AVCommunity.API.Controllers
             {
                 _response.Message = "Record details saved sucessfully";
 
+                 /*
                 #region Notification
                 if (result > 0 && parameters.Id == 0)
                 {
@@ -112,6 +113,7 @@ namespace AVCommunity.API.Controllers
                     }
                 }
                 #endregion
+                */
             }
 
             _response.Id = result;
@@ -172,6 +174,7 @@ namespace AVCommunity.API.Controllers
                 {
                     _response.Message = "Record details saved sucessfully";
 
+                    /*
                     #region Notification
                     if (parameters.StatusId == 2)
                     {
@@ -201,6 +204,7 @@ namespace AVCommunity.API.Controllers
                         }
                     }
                     #endregion
+                    */
                 }
             }
 
