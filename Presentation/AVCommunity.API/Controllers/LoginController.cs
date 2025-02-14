@@ -76,6 +76,7 @@ namespace AVCommunity.API.Controllers
 
                     if (loginResponse.UserId != null)
                     {
+                        int stateId = 0;
                         int districtId = 0;
                         string strVillageIdList = string.Empty;
 
@@ -89,10 +90,16 @@ namespace AVCommunity.API.Controllers
                         };
                         //var vUserNotificationList = await _notificationRepository.GetNotificationList(vNotification_SearchObj);
 
-                        var vUserDetail = await _userRepository.GetAdminById(Convert.ToInt32(loginResponse.UserId));
-                        if(vUserDetail != null)
+                        var vUserDetail = await _userRepository.GetUserById(Convert.ToInt32(loginResponse.UserId));
+                        if (vUserDetail != null)
                         {
-                            districtId = Convert.ToInt32(vUserDetail.AdminDistrictId);
+                            stateId = Convert.ToInt32(vUserDetail.StateId);
+                        }
+
+                        var vAdminDetail = await _userRepository.GetAdminById(Convert.ToInt32(loginResponse.UserId));
+                        if(vAdminDetail != null)
+                        {
+                            districtId = Convert.ToInt32(vAdminDetail.AdminDistrictId);
                         }
 
                         var vUserVillageMappingDetail = await _userRepository.GetAdminVillageByEmployeeId(EmployeeId: Convert.ToInt32(loginResponse.UserId), VillageId: 0);
@@ -109,6 +116,7 @@ namespace AVCommunity.API.Controllers
                             MobileNumber = loginResponse.MobileNumber,
                             EmailId = loginResponse.EmailId,
                             UserType = loginResponse.UserType,
+                            StateId = stateId,
                             DistrictId = districtId,
                             VillageId = strVillageIdList,
                             IsMobileUser = loginResponse.IsMobileUser,
