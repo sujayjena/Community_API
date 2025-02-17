@@ -353,7 +353,7 @@ namespace AVCommunity.API.Controllers.Admin
                     WorkSheet1.Cells[1, 9].Value = "Date Of Birth";
                     WorkSheet1.Cells[1, 10].Value = "Age";
                     WorkSheet1.Cells[1, 11].Value = "Higher Study";
-                    WorkSheet1.Cells[1, 12].Value = "Business";
+                    WorkSheet1.Cells[1, 12].Value = "Occupation";
                     WorkSheet1.Cells[1, 13].Value = "Current Address";
                     WorkSheet1.Cells[1, 14].Value = "State";
                     WorkSheet1.Cells[1, 15].Value = "District";
@@ -403,6 +403,9 @@ namespace AVCommunity.API.Controllers.Admin
                         //member of family list
                         var vUser_Search = new User_Search();
                         vUser_Search.RegisterUserId = items.Id;
+                        vUser_Search.StatusId = items.StatusId;
+                        vUser_Search.DistrictId = items.DistrictId;
+                        vUser_Search.VillageId = items.VillageId.ToString();
 
                         int j = 1;
                         IEnumerable<User_Response> lstMUserObj = await _userRepository.GetUserList(vUser_Search);
