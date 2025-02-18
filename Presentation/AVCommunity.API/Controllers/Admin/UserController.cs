@@ -212,7 +212,7 @@ namespace AVCommunity.API.Controllers.Admin
                     {
                         districtId = Convert.ToInt32(vUserDetails.DistrictId == null ? 0 : vUserDetails.DistrictId);
                         villageId = Convert.ToInt32(vUserDetails.VillageId == null ? 0 : vUserDetails.VillageId);
-                        userName = string.Concat(vUserDetails.FirstName, " ", vUserDetails.MiddleName, " ", vUserDetails.Surname);
+                        userName = string.Concat(vUserDetails.FirstName, " ", vUserDetails.MiddleName, " ", vUserDetails.LastName);
                         userMobileNo = vUserDetails.MobileNumber;
 
                         string notifyMessage = String.Format(@"પ્રિય, કાસુન્દ્રા પરિવાર તરફથી શુભેચ્છાઓ! અમારી સાથે જોડાવા માટે આભાર! તમારું ખાતું સફળતાપૂર્વક આ મોબાઇલ નંબર - {0} સાથે બનાવવામાં આવ્યું છે. જો તમને કોઈ પ્રશ્નો હોય, તો કૃપા કરીને સંબંધિત સંચાલક સાથે સંપર્ક કરો।", vUserDetails.MobileNumber);
@@ -534,7 +534,7 @@ namespace AVCommunity.API.Controllers.Admin
 
                             if (districtId > 0 || villageId > 0)
                             {
-                                string userName = string.Concat(vUserDetails.FirstName, " ", vUserDetails.MiddleName, " ", vUserDetails.Surname);
+                                string userName = string.Concat(vUserDetails.FirstName, " ", vUserDetails.MiddleName, " ", vUserDetails.LastName);
                                 string notifyMessage = String.Format(@"પ્રિય,કાસુન્દ્રા પરિવાર તરફથી શુભેચ્છાઓ! વપરાશકર્તાએ {0} અને {1} ના વિભાજન માટે વિનંતી કરી છે।", userName.Trim(), vUserDetails.MobileNumber);
 
                                 var vAdminVillageUser = await _userRepository.GetAdminVillageByEmployeeId(0, villageId); // Village Wise Admin User 

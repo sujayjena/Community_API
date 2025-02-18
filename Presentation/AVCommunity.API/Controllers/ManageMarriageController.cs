@@ -78,7 +78,7 @@ namespace AVCommunity.API.Controllers
 
                         if (districtId > 0 || villageId > 0)
                         {
-                            string userName = string.Concat(vUserDetails.FirstName, " ", vUserDetails.MiddleName, " ", vUserDetails.Surname);
+                            string userName = string.Concat(vUserDetails.FirstName, " ", vUserDetails.MiddleName, " ", vUserDetails.LastName);
                             string notifyMessage = String.Format(@"પ્રિય,કાસુન્દ્રા પરિવાર તરફથી શુભેચ્છાઓ! વપરાશકર્તાએ લગ્ન માટેની વિનંતી કરી છે। {0} અને {1}।", userName.Trim(), vUserDetails.MobileNumber);
 
                             var vAdminVillageUser = await _userRepository.GetAdminVillageByEmployeeId(0, villageId); // Village Wise Admin User 
@@ -181,7 +181,7 @@ namespace AVCommunity.API.Controllers
                             var vUserDetails = await _userRepository.GetUserById(Convert.ToInt32(vMarriegeDetails.ModifiedBy));
                             if (vUserDetails != null)
                             {
-                                string userName = string.Concat(vUserDetails.FirstName, " ", vUserDetails.MiddleName, " ", vUserDetails.Surname);
+                                string userName = string.Concat(vUserDetails.FirstName, " ", vUserDetails.MiddleName, " ", vUserDetails.LastName);
                                 string notifyMessage = String.Format(@"પ્રિય,કાસુન્દ્રા પરિવાર તરફથી શુભેચ્છાઓ! તમારી લગ્નની વિનંતી સફળતાપૂર્વક {0} દ્વારા સ્વીકારવામાં આવી છે.", userName.Trim());
 
                                 var vNotifyObj = new Notification_Request()
