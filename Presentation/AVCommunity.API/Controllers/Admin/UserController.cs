@@ -372,9 +372,10 @@ namespace AVCommunity.API.Controllers.Admin
                     int i = 1;
                     foreach (var items in lstSizeObj)
                     {
+                        string fullName = items.FirstName + " " + items.MiddleName + " " + items.LastName;
                         WorkSheet1.Cells[recordIndex, 1].Value = i.ToString();
                         WorkSheet1.Cells[recordIndex, 1].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                        WorkSheet1.Cells[recordIndex, 2].Value = items.FirstName + " " + items.MiddleName;
+                        WorkSheet1.Cells[recordIndex, 2].Value = fullName.Trim();
                         WorkSheet1.Cells[recordIndex, 3].Value = items.Surname;
                         WorkSheet1.Cells[recordIndex, 4].Value = items.MobileNumber;
                         WorkSheet1.Cells[recordIndex, 5].Value = items.RelationName;
@@ -412,9 +413,10 @@ namespace AVCommunity.API.Controllers.Admin
                         IEnumerable<User_Response> lstMUserObj = await _userRepository.GetUserList(vUser_Search);
                         foreach (var mitems in lstMUserObj)
                         {
+                            string mfullName = mitems.FirstName + " " + mitems.MiddleName + " " + mitems.LastName;
                             WorkSheet1.Cells[recordIndex, 1].Value = i + "." + j;
                             WorkSheet1.Cells[recordIndex, 1].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-                            WorkSheet1.Cells[recordIndex, 2].Value = mitems.FirstName + " " + mitems.MiddleName;
+                            WorkSheet1.Cells[recordIndex, 2].Value = mfullName.Trim();
                             WorkSheet1.Cells[recordIndex, 3].Value = mitems.Surname;
                             WorkSheet1.Cells[recordIndex, 4].Value = mitems.MobileNumber;
                             WorkSheet1.Cells[recordIndex, 5].Value = mitems.RelationName;
@@ -587,7 +589,7 @@ namespace AVCommunity.API.Controllers.Admin
                 searchUser.RegisterUserId = mUsers.Id;
                 searchUser.DistrictId=0;
                 searchUser.VillageId = "";
-                searchUser.IsSplit = null;
+                searchUser.IsSplit = false;
                 searchUser.StatusId = 0;
 
                 var memberUserList = await _userRepository.GetUserList(searchUser);

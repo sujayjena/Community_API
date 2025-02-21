@@ -61,17 +61,17 @@ namespace AVCommunity.Persistence.Repositories
 
             var result = await ListByStoredProcedure<Admin_Response>("GetAdminList", queryParameters);
 
-            //if (SessionManager.LoggedInUserId > 1)
-            //{
-            //    if (SessionManager.LoggedInUserId > 2)
-            //    {
-            //        result = result.Where(x => x.Id > 2).ToList();
-            //    }
-            //    else
-            //    {
-            //        result = result.Where(x => x.Id > 1).ToList();
-            //    }
-            //}
+            if (SessionManager.LoggedInUserId > 1)
+            {
+                if (SessionManager.LoggedInUserId > 2)
+                {
+                    result = result.Where(x => x.Id > 2).ToList();
+                }
+                else
+                {
+                    result = result.Where(x => x.Id > 1).ToList();
+                }
+            }
 
             parameters.Total = queryParameters.Get<int>("Total");
 
