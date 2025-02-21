@@ -406,6 +406,7 @@ namespace AVCommunity.API.Controllers.Admin
                         vUser_Search.StatusId = items.StatusId;
                         vUser_Search.DistrictId = items.DistrictId;
                         vUser_Search.VillageId = items.VillageId.ToString();
+                        vUser_Search.IsSplit = false;
 
                         int j = 1;
                         IEnumerable<User_Response> lstMUserObj = await _userRepository.GetUserList(vUser_Search);

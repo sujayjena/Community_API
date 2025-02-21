@@ -63,50 +63,70 @@ namespace AVCommunity.API.Controllers
                     var vUserDetails = await _executiveBodyRepository.GetExecutiveBodyById(Convert.ToInt32(result));
                     if (vUserDetails != null)
                     {
-                        districtId = Convert.ToInt32(vUserDetails.DistrictId == null ? 0 : vUserDetails.DistrictId);
-                        villageId = Convert.ToInt32(vUserDetails.VillageId == null ? 0 : vUserDetails.VillageId);
+                        string notifyMessage = String.Format(
+                            @"
+                            પ્રિય,
 
-                        if (districtId > 0 || villageId > 0)
+                            કાસુન્દ્રા પરિવાર તરફથી શુભેચ્છાઓ! 
+
+                            નવી કાર્યકારી સમિતિની સૂચિ નીચે મુજબ છે:
+
+                            નામ: - {0}
+                            પદ: - {1}
+                            મોબાઇલ નંબર: - {2}
+                            ", vUserDetails.ExecutiveBodyName, vUserDetails.PositionName, vUserDetails.MobileNumber);
+
+                        //admin notification
+                        var vAdminSearch = new Admin_Search();
+                        vAdminSearch.AdminDistrictId = 0;
+
+                        var vAdminUserByDistrict = await _userRepository.GetAdminList(vAdminSearch); // Admin District Wise Admin User 
+                        foreach (var usr in vAdminUserByDistrict)
                         {
-                            string notifyMessage = String.Format(
-                                @"
-                                પ્રિય,
-
-                                કાસુન્દ્રા પરિવાર તરફથી શુભેચ્છાઓ! 
-
-                                નવી કાર્યકારી સમિતિની સૂચિ નીચે મુજબ છે:
-
-                                નામ: - {0}
-                                પદ: - {1}
-                                મોબાઇલ નંબર: - {2}
-                                ", vUserDetails.ExecutiveBodyName, vUserDetails.PositionName, vUserDetails.MobileNumber);
-
-                            var vAdminVillageUser = await _userRepository.GetAdminVillageByEmployeeId(0, villageId); // Village Wise Admin User 
-                            var vAdminVillageUserList = vAdminVillageUser.ToList().Select(x => x.EmployeeId);
-
-                            var vAdminSearch = new Admin_Search();
-                            vAdminSearch.AdminDistrictId = districtId;
-
-                            var vAdminUserByDistrict = await _userRepository.GetAdminList(vAdminSearch); // Admin District Wise Admin User 
-                            var vAdminUserFinalList = vAdminUserByDistrict.Where(x => vAdminVillageUserList.Contains(x.Id)).ToList();
-                            if (vAdminUserFinalList.Count > 0)
+                            if (usr.Id > 2)
                             {
-                                foreach (var usr in vAdminUserFinalList)
+                                var vNotifyObj = new Notification_Request()
                                 {
-                                    var vNotifyObj = new Notification_Request()
-                                    {
-                                        Subject = "Executive Body",
-                                        SendTo = "Admin",
-                                        //CustomerId = vWorkOrderObj.CustomerId,
-                                        //CustomerMessage = NotifyMessage,
-                                        EmployeeId = usr.Id,
-                                        EmployeeMessage = notifyMessage,
-                                        RefValue1 = "",
-                                        ReadUnread = false
-                                    };
+                                    Subject = "Executive Body",
+                                    SendTo = "Admin",
+                                    //CustomerId = vWorkOrderObj.CustomerId,
+                                    //CustomerMessage = NotifyMessage,
+                                    EmployeeId = usr.Id,
+                                    EmployeeMessage = notifyMessage,
+                                    RefValue1 = "",
+                                    ReadUnread = false
+                                };
 
-                                    int resultNotification = await _notificationRepository.SaveNotification(vNotifyObj);
-                                }
+                                int resultNotification = await _notificationRepository.SaveNotification(vNotifyObj);
+                            }
+                        }
+
+                        //user notification
+                        var vUserSearch = new User_Search();
+                        vUserSearch.DistrictId = districtId;
+                        vUserSearch.RegisterUserId = null;
+                        vUserSearch.VillageId = "";
+                        vUserSearch.StatusId = 0;
+                        vUserSearch.IsSplit = false;
+
+                        var vUserList = await _userRepository.GetUserList(vUserSearch);
+                        if (vUserList.ToList().Count > 0)
+                        {
+                            foreach (var usr in vUserList)
+                            {
+                                var vNotifyObj = new Notification_Request()
+                                {
+                                    Subject = "Executive Body",
+                                    SendTo = "User",
+                                    //CustomerId = vWorkOrderObj.CustomerId,
+                                    //CustomerMessage = NotifyMessage,
+                                    EmployeeId = usr.Id,
+                                    EmployeeMessage = notifyMessage,
+                                    RefValue1 = "",
+                                    ReadUnread = false
+                                };
+
+                                int resultNotification = await _notificationRepository.SaveNotification(vNotifyObj);
                             }
                         }
                     }
