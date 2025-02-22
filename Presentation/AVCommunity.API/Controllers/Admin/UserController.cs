@@ -603,6 +603,177 @@ namespace AVCommunity.API.Controllers.Admin
 
         [Route("[action]")]
         [HttpPost]
+        public async Task<ResponseModel> ExportDirectoryData(GlobalUser_Search parameters)
+        {
+            _response.IsSuccess = false;
+            byte[] result;
+            int recordIndex;
+            ExcelWorksheet WorkSheet1;
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+
+            IEnumerable<GloberUser_Response> lstSizeObj = await _userRepository.GetGlobalUserList(parameters);
+
+            using (MemoryStream msExportDataFile = new MemoryStream())
+            {
+                using (ExcelPackage excelExportData = new ExcelPackage())
+                {
+                    WorkSheet1 = excelExportData.Workbook.Worksheets.Add("DirectoryUser");
+                    WorkSheet1.TabColor = System.Drawing.Color.Black;
+                    WorkSheet1.DefaultRowHeight = 12;
+
+                    //Header of table
+                    WorkSheet1.Row(1).Height = 20;
+                    WorkSheet1.Row(1).Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                    WorkSheet1.Row(1).Style.Font.Bold = true;
+
+                    WorkSheet1.Cells[1, 1].Value = "Sr.No";
+                    WorkSheet1.Cells[1, 2].Value = "Full Name";
+                    WorkSheet1.Cells[1, 3].Value = "Surname Of Mosal";
+                    WorkSheet1.Cells[1, 4].Value = "Mobile Number";
+                    WorkSheet1.Cells[1, 5].Value = "Relation";
+                    WorkSheet1.Cells[1, 6].Value = "Gender";
+                    WorkSheet1.Cells[1, 7].Value = "Is Married";
+                    WorkSheet1.Cells[1, 8].Value = "Native";
+                    WorkSheet1.Cells[1, 9].Value = "Date Of Birth";
+                    WorkSheet1.Cells[1, 10].Value = "Age";
+                    WorkSheet1.Cells[1, 11].Value = "Higher Study";
+                    WorkSheet1.Cells[1, 12].Value = "Occupation";
+                    WorkSheet1.Cells[1, 13].Value = "Current Address";
+                    WorkSheet1.Cells[1, 14].Value = "State";
+                    WorkSheet1.Cells[1, 15].Value = "District";
+                    WorkSheet1.Cells[1, 16].Value = "Village";
+                    WorkSheet1.Cells[1, 17].Value = "Pincode";
+                    WorkSheet1.Cells[1, 18].Value = "Industry";
+                    WorkSheet1.Cells[1, 19].Value = "Business Address";
+                    //WorkSheet1.Cells[1, 17].Value = "State";
+                    //WorkSheet1.Cells[1, 18].Value = "District";
+                    //WorkSheet1.Cells[1, 19].Value = "Village";
+                    //WorkSheet1.Cells[1, 20].Value = "Pincode";
+                    WorkSheet1.Cells[1, 20].Value = "IsActive";
+
+                    recordIndex = 2;
+
+                    int i = 1;
+                    foreach (var items in lstSizeObj)
+                    {
+                        string fullName = items.FirstName + " " + items.MiddleName + " " + items.LastName;
+                        WorkSheet1.Cells[recordIndex, 1].Value = i.ToString();
+                        WorkSheet1.Cells[recordIndex, 1].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                        WorkSheet1.Cells[recordIndex, 2].Value = fullName.Trim();
+                        WorkSheet1.Cells[recordIndex, 3].Value = items.Surname;
+                        WorkSheet1.Cells[recordIndex, 4].Value = items.MobileNumber;
+                        WorkSheet1.Cells[recordIndex, 5].Value = items.RelationName;
+                        WorkSheet1.Cells[recordIndex, 6].Value = items.GenderName;
+                        WorkSheet1.Cells[recordIndex, 7].Value = items.MeritalStatusName;
+                        WorkSheet1.Cells[recordIndex, 8].Value = items.NativeName;
+                        WorkSheet1.Cells[recordIndex, 9].Value = items.DateOfBirth.HasValue ? items.DateOfBirth.Value.ToString("dd/MM/yyyy") : string.Empty;
+                        WorkSheet1.Cells[recordIndex, 10].Value = items.Age;
+                        WorkSheet1.Cells[recordIndex, 11].Value = items.HigherStudyName;
+                        WorkSheet1.Cells[recordIndex, 12].Value = items.OccupationName;
+                        WorkSheet1.Cells[recordIndex, 13].Value = items.CurrentAddress;
+                        WorkSheet1.Cells[recordIndex, 14].Value = items.StateName;
+                        WorkSheet1.Cells[recordIndex, 15].Value = items.DistrictName;
+                        WorkSheet1.Cells[recordIndex, 16].Value = items.VillageName;
+                        WorkSheet1.Cells[recordIndex, 17].Value = items.Pincode;
+                        WorkSheet1.Cells[recordIndex, 18].Value = items.IndustryName;
+                        WorkSheet1.Cells[recordIndex, 19].Value = items.BusinessAddress;
+                        //WorkSheet1.Cells[recordIndex, 17].Value = items.StateName;
+                        //WorkSheet1.Cells[recordIndex, 18].Value = items.DistrictName;
+                        //WorkSheet1.Cells[recordIndex, 19].Value = items.VillageName;
+                        //WorkSheet1.Cells[recordIndex, 20].Value = items.Pincode;
+                        WorkSheet1.Cells[recordIndex, 20].Value = items.IsActive == true ? "Active" : "Inactive";
+
+                        recordIndex += 1;
+
+                        //member of family list
+                        var vUser_Search = new GlobalUser_Search();
+                        vUser_Search.EmployeeId = 0;
+                        vUser_Search.BusinessId = items.OccupationId;
+                        vUser_Search.DistrictId = items.DistrictId;
+                        vUser_Search.VillageId = items.VillageId;
+                        vUser_Search.AppType = "W";
+                        vUser_Search.RegisterUserId = items.Id;
+                        vUser_Search.SearchText = "";
+                        vUser_Search.IsActive = true;
+
+                        int j = 1;
+                        IEnumerable<GloberUser_Response> lstMUserObj = await _userRepository.GetGlobalUserList(vUser_Search);
+                        foreach (var mitems in lstMUserObj)
+                        {
+                            string mfullName = mitems.FirstName + " " + mitems.MiddleName + " " + mitems.LastName;
+                            WorkSheet1.Cells[recordIndex, 1].Value = i + "." + j;
+                            WorkSheet1.Cells[recordIndex, 1].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                            WorkSheet1.Cells[recordIndex, 2].Value = mfullName.Trim();
+                            WorkSheet1.Cells[recordIndex, 3].Value = mitems.Surname;
+                            WorkSheet1.Cells[recordIndex, 4].Value = mitems.MobileNumber;
+                            WorkSheet1.Cells[recordIndex, 5].Value = mitems.RelationName;
+                            WorkSheet1.Cells[recordIndex, 6].Value = mitems.GenderName;
+                            WorkSheet1.Cells[recordIndex, 7].Value = mitems.MeritalStatusName;
+                            WorkSheet1.Cells[recordIndex, 8].Value = mitems.NativeName;
+                            WorkSheet1.Cells[recordIndex, 9].Value = mitems.DateOfBirth.HasValue ? mitems.DateOfBirth.Value.ToString("dd/MM/yyyy") : string.Empty;
+                            WorkSheet1.Cells[recordIndex, 10].Value = mitems.Age;
+                            WorkSheet1.Cells[recordIndex, 11].Value = mitems.HigherStudyName;
+                            WorkSheet1.Cells[recordIndex, 12].Value = mitems.OccupationName;
+                            WorkSheet1.Cells[recordIndex, 13].Value = mitems.CurrentAddress;
+                            WorkSheet1.Cells[recordIndex, 14].Value = mitems.StateName;
+                            WorkSheet1.Cells[recordIndex, 15].Value = mitems.DistrictName;
+                            WorkSheet1.Cells[recordIndex, 16].Value = mitems.VillageName;
+                            WorkSheet1.Cells[recordIndex, 17].Value = mitems.Pincode;
+                            WorkSheet1.Cells[recordIndex, 18].Value = items.IndustryName;
+                            WorkSheet1.Cells[recordIndex, 19].Value = mitems.CurrentAddress;
+                            //WorkSheet1.Cells[recordIndex, 17].Value = mitems.StateName;
+                            //WorkSheet1.Cells[recordIndex, 18].Value = mitems.DistrictName;
+                            //WorkSheet1.Cells[recordIndex, 19].Value = mitems.VillageName;
+                            //WorkSheet1.Cells[recordIndex, 20].Value = mitems.Pincode;
+                            WorkSheet1.Cells[recordIndex, 20].Value = mitems.IsActive == true ? "Active" : "Inactive";
+
+                            recordIndex += 1;
+
+                            j++;
+                        }
+
+                        i++;
+                    }
+
+                    WorkSheet1.Column(1).AutoFit();
+                    WorkSheet1.Column(2).AutoFit();
+                    WorkSheet1.Column(3).AutoFit();
+                    WorkSheet1.Column(4).AutoFit();
+                    WorkSheet1.Column(5).AutoFit();
+                    WorkSheet1.Column(6).AutoFit();
+                    WorkSheet1.Column(7).AutoFit();
+                    WorkSheet1.Column(8).AutoFit();
+                    WorkSheet1.Column(9).AutoFit();
+                    WorkSheet1.Column(10).AutoFit();
+                    WorkSheet1.Column(11).AutoFit();
+                    WorkSheet1.Column(12).AutoFit();
+                    WorkSheet1.Column(13).AutoFit();
+                    WorkSheet1.Column(14).AutoFit();
+                    WorkSheet1.Column(15).AutoFit();
+                    WorkSheet1.Column(16).AutoFit();
+                    WorkSheet1.Column(17).AutoFit();
+                    WorkSheet1.Column(18).AutoFit();
+                    WorkSheet1.Column(19).AutoFit();
+                    WorkSheet1.Column(20).AutoFit();
+
+                    excelExportData.SaveAs(msExportDataFile);
+                    msExportDataFile.Position = 0;
+                    result = msExportDataFile.ToArray();
+                }
+            }
+
+            if (result != null)
+            {
+                _response.Data = result;
+                _response.IsSuccess = true;
+                _response.Message = "Exported successfully";
+            }
+
+            return _response;
+        }
+
+        [Route("[action]")]
+        [HttpPost]
         [AllowAnonymous]
         public async Task<ResponseModel> ForgotPassword(ForgotPassword_Request parameters)
         {

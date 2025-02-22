@@ -219,6 +219,9 @@ namespace AVCommunity.Application.Models
 
         [DefaultValue("W")]
         public string? AppType { get; set; }
+
+        [DefaultValue(null)]
+        public int? RegisterUserId { get; set; }
     }
 
     public class User_Response : BaseResponseEntity
