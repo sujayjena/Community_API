@@ -61,7 +61,7 @@ namespace AVCommunity.API.Controllers.Admin
             }
             else
             {
-                _response.Message = "Record details saved sucessfully";
+                _response.Message = "Record details saved successfully";
 
                 #region // Add/Update Admin Village
 
@@ -168,7 +168,7 @@ namespace AVCommunity.API.Controllers.Admin
             }
             else
             {
-                _response.Message = "Record details saved sucessfully";
+                _response.Message = "Record details saved successfully";
 
                 #region // Add/Update Industry
 
@@ -518,7 +518,7 @@ namespace AVCommunity.API.Controllers.Admin
             }
             else
             {
-                _response.Message = "Record details saved sucessfully";
+                _response.Message = "Record details saved successfully";
 
                 #region Notification
                 if (result > 0)
@@ -796,7 +796,7 @@ namespace AVCommunity.API.Controllers.Admin
             }
             else
             {
-                _response.Message = "Record details saved sucessfully";
+                _response.Message = "Record details saved successfully";
             }
 
             _response.Id = result;
@@ -829,7 +829,7 @@ namespace AVCommunity.API.Controllers.Admin
                 }
                 else
                 {
-                    _response.Message = "Record details saved sucessfully";
+                    _response.Message = "Record details saved successfully";
                 }
             }
 

@@ -52,7 +52,7 @@ namespace AVCommunity.API.Controllers
             }
             else
             {
-                _response.Message = "Record details saved sucessfully";
+                _response.Message = "Record details saved successfully";
 
                 #region Notification
                 if (result > 0 && parameters.Id == 0)
