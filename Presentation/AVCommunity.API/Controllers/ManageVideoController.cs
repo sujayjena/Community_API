@@ -153,6 +153,16 @@ namespace AVCommunity.API.Controllers
             return _response;
         }
 
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResponseModel> GetPhotoNVideoList(PhotoNVideo_Search parameters)
+        {
+            IEnumerable<PhotoNVideo_Response> lstUsers = await _manageVideoRepository.GetPhotoNVideoList(parameters);
+            _response.Data = lstUsers.ToList();
+            _response.Total = parameters.Total;
+            return _response;
+        }
+
         #endregion
     }
 }

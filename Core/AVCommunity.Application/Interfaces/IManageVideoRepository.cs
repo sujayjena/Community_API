@@ -27,6 +27,8 @@ namespace AVCommunity.Application.Interfaces
 
         Task<Video_Response?> GetVideoById(long Id);
 
+        Task<IEnumerable<PhotoNVideo_Response>> GetPhotoNVideoList(PhotoNVideo_Search parameters);
+
         #endregion
     }
 }

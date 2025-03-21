@@ -78,5 +78,32 @@ namespace AVCommunity.Application.Models
         public bool? IsActive { get; set; }
     }
 
+    public class PhotoNVideo_Search : BaseSearchEntity
+    {
+        public int? PhotoNVideoHeaderId { get; set; }
+
+        [DefaultValue(null)]
+        public DateTime? FromDate { get; set; }
+
+        [DefaultValue(null)]
+        public DateTime? ToDate { get; set; }
+    }
+
+    public class PhotoNVideo_Response : BaseResponseEntity
+    {
+        public int? PhotoNVideoHeaderId { get; set; }
+        public string? PhotoNVideoHeaderName { get; set; }
+        public int? DistrictId { get; set; }
+        public string? DistrictName { get; set; }
+        public string? Comments { get; set; }
+        public DateTime? StartDate { get; set; }
+        public DateTime? EndDate { get; set; }
+        public string? PhotoNVideoOriginalFileName { get; set; }
+        public string? PhotoNVideoFileName { get; set; }
+        public string? PhotoNVideoURL { get; set; }
+        public bool? IsActive { get; set; }
+    }
+
     #endregion
+
 }
