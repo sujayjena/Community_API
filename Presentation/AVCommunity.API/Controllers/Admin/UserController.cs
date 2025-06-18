@@ -587,7 +587,7 @@ namespace AVCommunity.API.Controllers.Admin
             {
                 var searchUser = new User_Search();
                 searchUser.RegisterUserId = mUsers.Id;
-                searchUser.DistrictId=0;
+                searchUser.DistrictId = 0;
                 searchUser.VillageId = "";
                 searchUser.IsSplit = false;
                 searchUser.StatusId = 0;
