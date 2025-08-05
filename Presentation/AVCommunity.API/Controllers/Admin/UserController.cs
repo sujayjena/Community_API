@@ -36,6 +36,7 @@ namespace AVCommunity.API.Controllers.Admin
             _response = new ResponseModel();
             _champion_response = new Champion_ResponseModel();
             _response.IsSuccess = true;
+            _champion_response.IsSuccess = true;
         }
 
         #region Admin 
