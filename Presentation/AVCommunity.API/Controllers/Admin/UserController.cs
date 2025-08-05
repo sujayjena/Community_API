@@ -501,7 +501,7 @@ namespace AVCommunity.API.Controllers.Admin
                 RegisterUserId = null,
                 DistrictId = 0,
                 VillageId = "",
-                IsSplit = null,
+                IsSplit = false,
                 StatusId = 2
             };
             var vUserList = await _userRepository.GetUserList(vUser_Search);
