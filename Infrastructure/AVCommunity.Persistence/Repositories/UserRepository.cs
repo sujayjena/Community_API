@@ -306,8 +306,25 @@ namespace AVCommunity.Persistence.Repositories
             return result;
         }
 
-        #endregion
+        public async Task<IEnumerable<User_Response>> GetBirthday_DeathListByDate(Birthday_DeathListByDate_Search parameters)
+        {
+            DynamicParameters queryParameters = new DynamicParameters();
+            queryParameters.Add("@Filter_Date", parameters.Filter_Date);
+            queryParameters.Add("@IsBirthday_Death", parameters.IsBirthday_Death);
+            queryParameters.Add("@SearchText", parameters.SearchText.SanitizeValue());
+            queryParameters.Add("@IsActive", parameters.IsActive);
+            queryParameters.Add("@PageNo", parameters.PageNo);
+            queryParameters.Add("@PageSize", parameters.PageSize);
+            queryParameters.Add("@Total", parameters.Total, null, System.Data.ParameterDirection.Output);
+            queryParameters.Add("@UserId", SessionManager.LoggedInUserId);
 
-       
+            var result = await ListByStoredProcedure<User_Response>("GetBirthday_DeathListByDate", queryParameters);
+
+            parameters.Total = queryParameters.Get<int>("Total");
+
+            return result;
+        }
+
+        #endregion
     }
 }

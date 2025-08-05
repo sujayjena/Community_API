@@ -48,6 +48,8 @@ namespace AVCommunity.Application.Interfaces
 
         Task<IEnumerable<UserRemarkLog_Response>> GetUserRemarkLogListById(UserRemarkLog_Search parameters);
 
+        Task<IEnumerable<User_Response>> GetBirthday_DeathListByDate(Birthday_DeathListByDate_Search parameters);
+
         #endregion
     }
 }

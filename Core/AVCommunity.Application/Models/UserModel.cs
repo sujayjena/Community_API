@@ -435,5 +435,13 @@ namespace AVCommunity.Application.Models
         public int? CreatedBy { get; set; }
         public string? CreatorName { get; set; }
     }
+
+    public class Birthday_DeathListByDate_Search : BaseSearchEntity
+    {
+        [DefaultValue(null)]
+        public DateTime? Filter_Date { get; set; }
+        public int? IsBirthday_Death { get; set; }
+    }
+
     #endregion
 }

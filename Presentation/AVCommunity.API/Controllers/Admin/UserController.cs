@@ -18,6 +18,7 @@ namespace AVCommunity.API.Controllers.Admin
     public class UserController : CustomBaseController
     {
         private ResponseModel _response;
+        private Champion_ResponseModel _champion_response;
         private readonly IUserRepository _userRepository;
         private readonly ITerritoryRepository _territoryRepository;
         private readonly IAdminMasterRepository _adminMasterRepository;
@@ -33,6 +34,7 @@ namespace AVCommunity.API.Controllers.Admin
             _notificationRepository = notificationRepository;
 
             _response = new ResponseModel();
+            _champion_response = new Champion_ResponseModel();
             _response.IsSuccess = true;
         }
 
@@ -487,12 +489,24 @@ namespace AVCommunity.API.Controllers.Admin
 
         [Route("[action]")]
         [HttpPost]
-        public async Task<ResponseModel> GetChampionList(Champion_Search parameters)
+        public async Task<Champion_ResponseModel> GetChampionList(Champion_Search parameters)
         {
             IEnumerable<Champion_Response> lstUsers = await _userRepository.GetChampionList(parameters);
-            _response.Data = lstUsers.ToList();
-            _response.Total = parameters.Total;
-            return _response;
+            _champion_response.Data = lstUsers.ToList();
+            _champion_response.Total = parameters.Total;
+
+            var vUser_Search = new User_Search()
+            {
+                RegisterUserId = null,
+                DistrictId = 0,
+                VillageId = "",
+                IsSplit = null,
+                StatusId = 2
+            };
+            var vUserList = await _userRepository.GetUserList(vUser_Search);
+
+            _champion_response.TotalMemberCount = vUserList.ToList().Count;
+            return _champion_response;
         }
 
         [Route("[action]")]
@@ -849,6 +863,17 @@ namespace AVCommunity.API.Controllers.Admin
                 var vResultObj = await _userRepository.GetUserRemarkLogListById(parameters);
                 _response.Data = vResultObj;
             }
+            return _response;
+        }
+
+        [Route("[action]")]
+        [HttpPost]
+        public async Task<ResponseModel> GetBirthday_DeathListByDate(Birthday_DeathListByDate_Search parameters)
+        {
+            IEnumerable<User_Response> lstUsers = await _userRepository.GetBirthday_DeathListByDate(parameters);
+
+            _response.Data = lstUsers.ToList();
+            _response.Total = parameters.Total;
             return _response;
         }
 
